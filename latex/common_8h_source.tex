@@ -1,0 +1,86 @@
+\hypertarget{common_8h_source}{}\doxysection{common.\+h}
+\mbox{\hyperlink{common_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <stdlib.h>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <stdbool.h>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <string.h>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <ctype.h>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <string.h>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <stdbool.h>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <errno.h>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <assert.h>}}
+\DoxyCodeLine{11 \textcolor{keyword}{extern} \textcolor{keywordtype}{char} *strdup(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *);}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{21 \textcolor{keyword}{typedef} \textcolor{keyword}{union}}
+\DoxyCodeLine{22 \{}
+\DoxyCodeLine{23     \textcolor{keywordtype}{int} int\_value;}
+\DoxyCodeLine{24     \textcolor{keywordtype}{float} float\_value;}
+\DoxyCodeLine{25     \textcolor{keywordtype}{char} *string\_value;}
+\DoxyCodeLine{26 \} \mbox{\hyperlink{unionanswer__t}{answer\_t}};}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{keyword}{typedef} bool (*check\_func)(\textcolor{keywordtype}{char} *);}
+\DoxyCodeLine{29 \textcolor{keyword}{typedef} \mbox{\hyperlink{unionanswer__t}{answer\_t}} (*convert\_func)(\textcolor{keywordtype}{char} *);}
+\DoxyCodeLine{30 \textcolor{keywordtype}{int} read\_string(\textcolor{keywordtype}{char} *buf, \textcolor{keywordtype}{int} buf\_siz);}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#define empty\_elem() \(\backslash\)}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{    (elem\_t) \{ .\_\_dummy = 0 \}}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#define bool\_elem(x) \(\backslash\)}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{    (elem\_t) \{ .b = (x) \}}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#define int\_elem(x) \(\backslash\)}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{    (elem\_t) \{ .i = (x) \}}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#define float\_elem(x) \(\backslash\)}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{    (elem\_t) \{ .f = (x) \}}}
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#define ptr\_elem(x) \(\backslash\)}}
+\DoxyCodeLine{41 \textcolor{preprocessor}{    (elem\_t) \{ .p = (x) \}}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#define size\_elem(x) \(\backslash\)}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{    (elem\_t) \{ .s = (x) \}}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \textcolor{keyword}{typedef} \textcolor{keyword}{union }\mbox{\hyperlink{unionelem}{elem}} \mbox{\hyperlink{unionelem}{elem\_t}};}
+\DoxyCodeLine{46 \textcolor{keyword}{union }\mbox{\hyperlink{unionelem}{elem}}}
+\DoxyCodeLine{47 \{}
+\DoxyCodeLine{48     \textcolor{keywordtype}{bool} \_\_dummy; \textcolor{comment}{// dummy value not to be used}}
+\DoxyCodeLine{49     \textcolor{keywordtype}{int} i;        \textcolor{comment}{// integer value}}
+\DoxyCodeLine{50     \textcolor{keywordtype}{bool} b;       \textcolor{comment}{// boolean value}}
+\DoxyCodeLine{51     \textcolor{keywordtype}{float} f;      \textcolor{comment}{// float value}}
+\DoxyCodeLine{52     \textcolor{keywordtype}{void} *p;      \textcolor{comment}{// pointer value}}
+\DoxyCodeLine{53     \textcolor{keywordtype}{size\_t} s;     \textcolor{comment}{// size value}}
+\DoxyCodeLine{54     \textcolor{keywordtype}{char} *str;}
+\DoxyCodeLine{55 \};}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{58 \textcolor{keyword}{typedef} bool (*\mbox{\hyperlink{common_8h_a5fe208c4603001cf6244fb79ff379306}{ioopm\_eq\_function}})(\mbox{\hyperlink{unionelem}{elem\_t}} a, \mbox{\hyperlink{unionelem}{elem\_t}} b);}
+\DoxyCodeLine{59 \textcolor{keyword}{typedef} bool (*ioopm\_predicate)(\mbox{\hyperlink{unionelem}{elem\_t}} key, \mbox{\hyperlink{unionelem}{elem\_t}} value, \textcolor{keywordtype}{void} *extra);}
+\DoxyCodeLine{60 \textcolor{keyword}{typedef} void (*ioopm\_apply\_function)(\mbox{\hyperlink{unionelem}{elem\_t}} key, \mbox{\hyperlink{unionelem}{elem\_t}} *value, \textcolor{keywordtype}{void} *extra);}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{66 \textcolor{keywordtype}{bool} \mbox{\hyperlink{common_8h_aafc34a54862032ca03d41aebf56ff651}{ioopm\_compare\_bool\_elems}}(\mbox{\hyperlink{unionelem}{elem\_t}} a, \mbox{\hyperlink{unionelem}{elem\_t}} b);}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{72 \textcolor{keywordtype}{bool} \mbox{\hyperlink{common_8h_abc2700fb58f8807344d295308b10bea6}{ioopm\_compare\_int\_elems}}(\mbox{\hyperlink{unionelem}{elem\_t}} a, \mbox{\hyperlink{unionelem}{elem\_t}} b);}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{78 \textcolor{keywordtype}{bool} \mbox{\hyperlink{common_8h_a38535d8587a11e6583fe4b89df942140}{ioopm\_compare\_float\_elems}}(\mbox{\hyperlink{unionelem}{elem\_t}} a, \mbox{\hyperlink{unionelem}{elem\_t}} b);}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{84 \textcolor{keywordtype}{bool} \mbox{\hyperlink{common_8h_a5c3d06513e17a381bd63497c9b8b8094}{ioopm\_compare\_ptr\_elems}}(\mbox{\hyperlink{unionelem}{elem\_t}} a, \mbox{\hyperlink{unionelem}{elem\_t}} b);}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{90 \textcolor{keywordtype}{bool} \mbox{\hyperlink{common_8h_a584fc4fce50e22079f842a6dcec245da}{ioopm\_compare\_size\_elems}}(\mbox{\hyperlink{unionelem}{elem\_t}} a, \mbox{\hyperlink{unionelem}{elem\_t}} b);}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{96 \textcolor{keywordtype}{bool} \mbox{\hyperlink{common_8h_a22cb30049bf4daad399e73214d51b507}{key\_equiv}}(\mbox{\hyperlink{unionelem}{elem\_t}} a, \mbox{\hyperlink{unionelem}{elem\_t}} b);}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{102 \textcolor{keywordtype}{bool} \mbox{\hyperlink{common_8h_a17092be4cd996ea65b0f439f7b12e148}{value\_equiv}}(\mbox{\hyperlink{unionelem}{elem\_t}} a, \mbox{\hyperlink{unionelem}{elem\_t}} b);}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{109 \mbox{\hyperlink{unionanswer__t}{answer\_t}} \mbox{\hyperlink{common_8h_acddcaccbbb72725a81b2504f3ca44649}{ask\_question}}(\textcolor{keywordtype}{char} *question, check\_func check, convert\_func convert);}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{114 \textcolor{keywordtype}{int} \mbox{\hyperlink{common_8h_a968d3e8120a7d81ccac4e0ae50478446}{ask\_question\_int}}(\textcolor{keywordtype}{char} *question);}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{119 \textcolor{keywordtype}{char} *\mbox{\hyperlink{common_8h_a7e5974e35756c854a37cfe581384651e}{ask\_question\_string}}(\textcolor{keywordtype}{char} *question);}
+\DoxyCodeLine{120 }
+\DoxyCodeLine{124 \textcolor{keywordtype}{char} *\mbox{\hyperlink{common_8h_ac57975c5ef1b8a3c4d6cb3ae0a653f3c}{ask\_question\_shelf}}(\textcolor{keywordtype}{char} *question);}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{129 \textcolor{keywordtype}{bool} \mbox{\hyperlink{common_8h_a364182cf326c6830ab087104cd1cafcd}{is\_positive}}(\textcolor{keywordtype}{int} num);}
+\DoxyCodeLine{130 }
+\DoxyCodeLine{134 \textcolor{keywordtype}{bool} \mbox{\hyperlink{common_8h_a016338a0ee00f9de93fb0ebae4cfa14e}{is\_valid\_number}}(\textcolor{keywordtype}{char} *str);}
+\DoxyCodeLine{135 }
+\DoxyCodeLine{139 \textcolor{keywordtype}{bool} \mbox{\hyperlink{common_8h_a59018c028dff47a4eea60338e1b2fe80}{is\_valid\_string}}(\textcolor{keywordtype}{char} *str);}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{144 \textcolor{keywordtype}{bool} \mbox{\hyperlink{common_8h_aa2b78f88cd295f7224e4aa9d90db5a00}{is\_valid\_shelf}}(\textcolor{keywordtype}{char} *\mbox{\hyperlink{structshelf}{shelf}});}
+
+\end{DoxyCode}

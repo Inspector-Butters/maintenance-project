@@ -1,0 +1,234 @@
+\hypertarget{frontend_8h}{}\doxysection{frontend.\+h File Reference}
+\label{frontend_8h}\index{frontend.h@{frontend.h}}
+
+
+Frontend of the Warehouse application.  
+
+
+{\ttfamily \#include \char`\"{}backend.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{frontend_8h_a8f7943780e0452b8b58e9267624fd6b8}{ui\+\_\+create\+\_\+merch}} (\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$db)
+\begin{DoxyCompactList}\small\item\em Adds a new merchandise to the Webstore. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{frontend_8h_a9abb513f62a617a5764c12ae4d7dd4db}{ui\+\_\+list\+\_\+merchs}} (\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$db)
+\begin{DoxyCompactList}\small\item\em Lists the merchandises in the Webstore. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{frontend_8h_aa3bdb9fc81e6cdd0d32ce4df08a212ca}{ui\+\_\+remove\+\_\+merch}} (\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$db)
+\begin{DoxyCompactList}\small\item\em Removes a merchandise from the Webstore and the shopping carts. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{frontend_8h_a0a0818958629522e77b79d85d2374acb}{ui\+\_\+edit\+\_\+merch}} (\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$db)
+\begin{DoxyCompactList}\small\item\em Edits the name, description and the price of a merchandise. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{frontend_8h_ae1f70057af2988665df99bd5cad11036}{ui\+\_\+replenish}} (\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$db)
+\begin{DoxyCompactList}\small\item\em Propmpts the user to either add a new location to a merchandise or edit an existing location of a merchandise. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{frontend_8h_a4a6cad5c442c79d51e8fe04a04d1f69e}{ui\+\_\+add\+\_\+new\+\_\+location}} (\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$db, \mbox{\hyperlink{structmerch}{merch\+\_\+t}} $\ast$\mbox{\hyperlink{structmerch}{merch}})
+\begin{DoxyCompactList}\small\item\em Adds a new location to an existing merchandise. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{frontend_8h_af9bfffc84de4fe9ba8fb4b2e87970613}{ui\+\_\+edit\+\_\+location}} (\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$db, \mbox{\hyperlink{structmerch}{merch\+\_\+t}} $\ast$\mbox{\hyperlink{structmerch}{merch}})
+\begin{DoxyCompactList}\small\item\em Edits the existing location of a merchandise. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{frontend_8h_a88d96e0ee5be3fa420d9816a0e2e5e7f}{ui\+\_\+create\+\_\+cart}} (\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$db)
+\begin{DoxyCompactList}\small\item\em Creates a cart. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{frontend_8h_a68b9d3a3a230aff296cb2e5acc6c1f86}{ui\+\_\+remove\+\_\+cart}} (\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$db)
+\begin{DoxyCompactList}\small\item\em Removes a cart. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{frontend_8h_aa40e12f5d99272d12760a36647a052e0}{ui\+\_\+add\+\_\+to\+\_\+cart}} (\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$db)
+\begin{DoxyCompactList}\small\item\em Adds a merchandise to a shopping cart. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{frontend_8h_aeae38a092f2f83948e1bab2b29f97612}{ui\+\_\+remove\+\_\+from\+\_\+cart}} (\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$db)
+\begin{DoxyCompactList}\small\item\em Removes a merchandise from a shopping cart. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{frontend_8h_a2792be218a2689405f65bd012fb280a3}{ui\+\_\+destroy\+\_\+webstore}} (\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$db)
+\begin{DoxyCompactList}\small\item\em Destroys the merchandises, carts and the Webstore and frees all their memories. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Frontend of the Warehouse application. 
+
+\begin{DoxyAuthor}{Author}
+Erdem Garip 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+15 Nov 2022  
+\end{DoxyDate}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{frontend_8h_a4a6cad5c442c79d51e8fe04a04d1f69e}\label{frontend_8h_a4a6cad5c442c79d51e8fe04a04d1f69e}} 
+\index{frontend.h@{frontend.h}!ui\_add\_new\_location@{ui\_add\_new\_location}}
+\index{ui\_add\_new\_location@{ui\_add\_new\_location}!frontend.h@{frontend.h}}
+\doxysubsubsection{\texorpdfstring{ui\_add\_new\_location()}{ui\_add\_new\_location()}}
+{\footnotesize\ttfamily void ui\+\_\+add\+\_\+new\+\_\+location (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$}]{db,  }\item[{\mbox{\hyperlink{structmerch}{merch\+\_\+t}} $\ast$}]{merch }\end{DoxyParamCaption})}
+
+
+
+Adds a new location to an existing merchandise. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & The Webstore \\
+\hline
+{\em merch} & An existing merchandise \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{frontend_8h_aa40e12f5d99272d12760a36647a052e0}\label{frontend_8h_aa40e12f5d99272d12760a36647a052e0}} 
+\index{frontend.h@{frontend.h}!ui\_add\_to\_cart@{ui\_add\_to\_cart}}
+\index{ui\_add\_to\_cart@{ui\_add\_to\_cart}!frontend.h@{frontend.h}}
+\doxysubsubsection{\texorpdfstring{ui\_add\_to\_cart()}{ui\_add\_to\_cart()}}
+{\footnotesize\ttfamily void ui\+\_\+add\+\_\+to\+\_\+cart (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$}]{db }\end{DoxyParamCaption})}
+
+
+
+Adds a merchandise to a shopping cart. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & The webstore \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{frontend_8h_a88d96e0ee5be3fa420d9816a0e2e5e7f}\label{frontend_8h_a88d96e0ee5be3fa420d9816a0e2e5e7f}} 
+\index{frontend.h@{frontend.h}!ui\_create\_cart@{ui\_create\_cart}}
+\index{ui\_create\_cart@{ui\_create\_cart}!frontend.h@{frontend.h}}
+\doxysubsubsection{\texorpdfstring{ui\_create\_cart()}{ui\_create\_cart()}}
+{\footnotesize\ttfamily void ui\+\_\+create\+\_\+cart (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$}]{db }\end{DoxyParamCaption})}
+
+
+
+Creates a cart. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & The Webstore \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{frontend_8h_a8f7943780e0452b8b58e9267624fd6b8}\label{frontend_8h_a8f7943780e0452b8b58e9267624fd6b8}} 
+\index{frontend.h@{frontend.h}!ui\_create\_merch@{ui\_create\_merch}}
+\index{ui\_create\_merch@{ui\_create\_merch}!frontend.h@{frontend.h}}
+\doxysubsubsection{\texorpdfstring{ui\_create\_merch()}{ui\_create\_merch()}}
+{\footnotesize\ttfamily void ui\+\_\+create\+\_\+merch (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$}]{db }\end{DoxyParamCaption})}
+
+
+
+Adds a new merchandise to the Webstore. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & The webstore \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{frontend_8h_a2792be218a2689405f65bd012fb280a3}\label{frontend_8h_a2792be218a2689405f65bd012fb280a3}} 
+\index{frontend.h@{frontend.h}!ui\_destroy\_webstore@{ui\_destroy\_webstore}}
+\index{ui\_destroy\_webstore@{ui\_destroy\_webstore}!frontend.h@{frontend.h}}
+\doxysubsubsection{\texorpdfstring{ui\_destroy\_webstore()}{ui\_destroy\_webstore()}}
+{\footnotesize\ttfamily void ui\+\_\+destroy\+\_\+webstore (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$}]{db }\end{DoxyParamCaption})}
+
+
+
+Destroys the merchandises, carts and the Webstore and frees all their memories. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & The webstore to destroy \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{frontend_8h_af9bfffc84de4fe9ba8fb4b2e87970613}\label{frontend_8h_af9bfffc84de4fe9ba8fb4b2e87970613}} 
+\index{frontend.h@{frontend.h}!ui\_edit\_location@{ui\_edit\_location}}
+\index{ui\_edit\_location@{ui\_edit\_location}!frontend.h@{frontend.h}}
+\doxysubsubsection{\texorpdfstring{ui\_edit\_location()}{ui\_edit\_location()}}
+{\footnotesize\ttfamily void ui\+\_\+edit\+\_\+location (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$}]{db,  }\item[{\mbox{\hyperlink{structmerch}{merch\+\_\+t}} $\ast$}]{merch }\end{DoxyParamCaption})}
+
+
+
+Edits the existing location of a merchandise. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & The Webstore \\
+\hline
+{\em merch} & The merchandise whose location will be edited \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{frontend_8h_a0a0818958629522e77b79d85d2374acb}\label{frontend_8h_a0a0818958629522e77b79d85d2374acb}} 
+\index{frontend.h@{frontend.h}!ui\_edit\_merch@{ui\_edit\_merch}}
+\index{ui\_edit\_merch@{ui\_edit\_merch}!frontend.h@{frontend.h}}
+\doxysubsubsection{\texorpdfstring{ui\_edit\_merch()}{ui\_edit\_merch()}}
+{\footnotesize\ttfamily void ui\+\_\+edit\+\_\+merch (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$}]{db }\end{DoxyParamCaption})}
+
+
+
+Edits the name, description and the price of a merchandise. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & The webstore \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{frontend_8h_a9abb513f62a617a5764c12ae4d7dd4db}\label{frontend_8h_a9abb513f62a617a5764c12ae4d7dd4db}} 
+\index{frontend.h@{frontend.h}!ui\_list\_merchs@{ui\_list\_merchs}}
+\index{ui\_list\_merchs@{ui\_list\_merchs}!frontend.h@{frontend.h}}
+\doxysubsubsection{\texorpdfstring{ui\_list\_merchs()}{ui\_list\_merchs()}}
+{\footnotesize\ttfamily void ui\+\_\+list\+\_\+merchs (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$}]{db }\end{DoxyParamCaption})}
+
+
+
+Lists the merchandises in the Webstore. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & The webstore \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{frontend_8h_a68b9d3a3a230aff296cb2e5acc6c1f86}\label{frontend_8h_a68b9d3a3a230aff296cb2e5acc6c1f86}} 
+\index{frontend.h@{frontend.h}!ui\_remove\_cart@{ui\_remove\_cart}}
+\index{ui\_remove\_cart@{ui\_remove\_cart}!frontend.h@{frontend.h}}
+\doxysubsubsection{\texorpdfstring{ui\_remove\_cart()}{ui\_remove\_cart()}}
+{\footnotesize\ttfamily void ui\+\_\+remove\+\_\+cart (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$}]{db }\end{DoxyParamCaption})}
+
+
+
+Removes a cart. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & The webstore \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{frontend_8h_aeae38a092f2f83948e1bab2b29f97612}\label{frontend_8h_aeae38a092f2f83948e1bab2b29f97612}} 
+\index{frontend.h@{frontend.h}!ui\_remove\_from\_cart@{ui\_remove\_from\_cart}}
+\index{ui\_remove\_from\_cart@{ui\_remove\_from\_cart}!frontend.h@{frontend.h}}
+\doxysubsubsection{\texorpdfstring{ui\_remove\_from\_cart()}{ui\_remove\_from\_cart()}}
+{\footnotesize\ttfamily void ui\+\_\+remove\+\_\+from\+\_\+cart (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$}]{db }\end{DoxyParamCaption})}
+
+
+
+Removes a merchandise from a shopping cart. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & The webstore \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{frontend_8h_aa3bdb9fc81e6cdd0d32ce4df08a212ca}\label{frontend_8h_aa3bdb9fc81e6cdd0d32ce4df08a212ca}} 
+\index{frontend.h@{frontend.h}!ui\_remove\_merch@{ui\_remove\_merch}}
+\index{ui\_remove\_merch@{ui\_remove\_merch}!frontend.h@{frontend.h}}
+\doxysubsubsection{\texorpdfstring{ui\_remove\_merch()}{ui\_remove\_merch()}}
+{\footnotesize\ttfamily void ui\+\_\+remove\+\_\+merch (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$}]{db }\end{DoxyParamCaption})}
+
+
+
+Removes a merchandise from the Webstore and the shopping carts. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & The webstore \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{frontend_8h_ae1f70057af2988665df99bd5cad11036}\label{frontend_8h_ae1f70057af2988665df99bd5cad11036}} 
+\index{frontend.h@{frontend.h}!ui\_replenish@{ui\_replenish}}
+\index{ui\_replenish@{ui\_replenish}!frontend.h@{frontend.h}}
+\doxysubsubsection{\texorpdfstring{ui\_replenish()}{ui\_replenish()}}
+{\footnotesize\ttfamily void ui\+\_\+replenish (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$}]{db }\end{DoxyParamCaption})}
+
+
+
+Propmpts the user to either add a new location to a merchandise or edit an existing location of a merchandise. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & The Webstore \\
+\hline
+\end{DoxyParams}

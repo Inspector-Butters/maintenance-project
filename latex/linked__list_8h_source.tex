@@ -1,0 +1,47 @@
+\hypertarget{linked__list_8h_source}{}\doxysection{linked\+\_\+list.\+h}
+\mbox{\hyperlink{linked__list_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include <stdlib.h>}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <stdbool.h>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{common_8h}{common.h}}"{}}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structiterator}{iterator}} \mbox{\hyperlink{structiterator}{ioopm\_list\_iterator\_t}};}
+\DoxyCodeLine{8 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structlist}{list}} \mbox{\hyperlink{structlist}{ioopm\_list\_t}};}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{26 \mbox{\hyperlink{structlist}{ioopm\_list\_t}}* \mbox{\hyperlink{linked__list_8h_a4d845f8933ba0afbd1226eb9511b2c75}{ioopm\_linked\_list\_create}}(\mbox{\hyperlink{common_8h_a5fe208c4603001cf6244fb79ff379306}{ioopm\_eq\_function}} eq);}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{30 \textcolor{keywordtype}{void} \mbox{\hyperlink{linked__list_8h_a1c58f9c19f65199570f7e1a77bb9ebed}{ioopm\_linked\_list\_destroy}}(\mbox{\hyperlink{structlist}{ioopm\_list\_t}}* \mbox{\hyperlink{structlist}{list}});}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{36 \mbox{\hyperlink{unionelem}{elem\_t}} \mbox{\hyperlink{linked__list_8h_ad4e02498c887ae6d387c9fd98c8ced0c}{ioopm\_linked\_list\_first}}(\textcolor{keyword}{const} \mbox{\hyperlink{structlist}{ioopm\_list\_t}}* \mbox{\hyperlink{structlist}{list}});}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{42 \mbox{\hyperlink{unionelem}{elem\_t}} \mbox{\hyperlink{linked__list_8h_aab4f1561591d2222715adf1b8949d0d6}{ioopm\_linked\_list\_last}}(\textcolor{keyword}{const} \mbox{\hyperlink{structlist}{ioopm\_list\_t}}* \mbox{\hyperlink{structlist}{list}});}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{47 \textcolor{keywordtype}{void} \mbox{\hyperlink{linked__list_8h_a2aaa23eb9c529ba99ee59f59abb3aa0d}{ioopm\_linked\_list\_append}}(\mbox{\hyperlink{structlist}{ioopm\_list\_t}}* \mbox{\hyperlink{structlist}{list}}, \mbox{\hyperlink{unionelem}{elem\_t}} value);}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{52 \textcolor{keywordtype}{void} \mbox{\hyperlink{linked__list_8h_af8be466c35b40ebb015d3794e467ced9}{ioopm\_linked\_list\_prepend}}(\mbox{\hyperlink{structlist}{ioopm\_list\_t}}* \mbox{\hyperlink{structlist}{list}}, \mbox{\hyperlink{unionelem}{elem\_t}} value);}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{61 \textcolor{keywordtype}{void} \mbox{\hyperlink{linked__list_8h_af64068120cbf830141daba674ab8425b}{ioopm\_linked\_list\_insert}}(\mbox{\hyperlink{structlist}{ioopm\_list\_t}}* \mbox{\hyperlink{structlist}{list}}, \textcolor{keywordtype}{size\_t} index, \mbox{\hyperlink{unionelem}{elem\_t}} value);}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{71 \mbox{\hyperlink{unionelem}{elem\_t}} \mbox{\hyperlink{linked__list_8h_a0190fdcc401763c5b57c6938b11cbb33}{ioopm\_linked\_list\_remove}}(\mbox{\hyperlink{structlist}{ioopm\_list\_t}}* \mbox{\hyperlink{structlist}{list}}, \textcolor{keywordtype}{size\_t} index);}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{80 \mbox{\hyperlink{unionelem}{elem\_t}} \mbox{\hyperlink{linked__list_8h_aa2c593ae2dd3b4c8caa6ac90b5d0f7f0}{ioopm\_linked\_list\_get}}(\textcolor{keyword}{const} \mbox{\hyperlink{structlist}{ioopm\_list\_t}}* \mbox{\hyperlink{structlist}{list}}, \textcolor{keywordtype}{size\_t} index);}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{86 \textcolor{keywordtype}{bool} \mbox{\hyperlink{linked__list_8h_a16e58d9df775524a547e064de4081df2}{ioopm\_linked\_list\_contains}}(\textcolor{keyword}{const} \mbox{\hyperlink{structlist}{ioopm\_list\_t}}* \mbox{\hyperlink{structlist}{list}}, \mbox{\hyperlink{unionelem}{elem\_t}} element);}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{91 \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{linked__list_8h_a0f9a0df6e3a0413f367c3a0903b7a856}{ioopm\_linked\_list\_size}}(\textcolor{keyword}{const} \mbox{\hyperlink{structlist}{ioopm\_list\_t}}* \mbox{\hyperlink{structlist}{list}});}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{96 \textcolor{keywordtype}{bool} \mbox{\hyperlink{linked__list_8h_a4264430fbc3876f65945c19a785e6ada}{ioopm\_linked\_list\_is\_empty}}(\textcolor{keyword}{const} \mbox{\hyperlink{structlist}{ioopm\_list\_t}}* \mbox{\hyperlink{structlist}{list}});}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{100 \textcolor{keywordtype}{void} \mbox{\hyperlink{linked__list_8h_ab38eb5e14a75f3239772a87261e104c5}{ioopm\_linked\_list\_clear}}(\mbox{\hyperlink{structlist}{ioopm\_list\_t}}* \mbox{\hyperlink{structlist}{list}});}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{108 \textcolor{keywordtype}{bool} \mbox{\hyperlink{linked__list_8h_af629ccfe9e074d770dc8c7febf3b1e71}{ioopm\_linked\_list\_all}}(\textcolor{keyword}{const} \mbox{\hyperlink{structlist}{ioopm\_list\_t}}* \mbox{\hyperlink{structlist}{list}}, ioopm\_predicate prop, \textcolor{keyword}{const} \textcolor{keywordtype}{void}* extra);}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{116 \textcolor{keywordtype}{bool} \mbox{\hyperlink{linked__list_8h_a97e36f81e281f45ccf5ad4979c979c23}{ioopm\_linked\_list\_any}}(\textcolor{keyword}{const} \mbox{\hyperlink{structlist}{ioopm\_list\_t}}* \mbox{\hyperlink{structlist}{list}}, ioopm\_predicate prop, \textcolor{keyword}{const} \textcolor{keywordtype}{void}* extra);}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{122 \textcolor{keywordtype}{void} \mbox{\hyperlink{linked__list_8h_a263ace9b532b879015b31632bb344006}{ioopm\_linked\_list\_apply\_to\_all}}(\mbox{\hyperlink{structlist}{ioopm\_list\_t}}* \mbox{\hyperlink{structlist}{list}}, ioopm\_apply\_function fun, \textcolor{keyword}{const} \textcolor{keywordtype}{void}* extra);}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{127 \mbox{\hyperlink{structiterator}{ioopm\_list\_iterator\_t}}* \mbox{\hyperlink{linked__list_8h_a19f0159c00321099fafae8c82d80a52b}{ioopm\_list\_iterator}}(\textcolor{keyword}{const} \mbox{\hyperlink{structlist}{ioopm\_list\_t}}* \mbox{\hyperlink{structlist}{list}});}
+
+\end{DoxyCode}

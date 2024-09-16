@@ -1,0 +1,104 @@
+\hypertarget{backend_8h_source}{}\doxysection{backend.\+h}
+\mbox{\hyperlink{backend_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{common_8h}{common.h}}"{}}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{linked__list_8h}{linked\_list.h}}"{}}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{hash__table_8h}{hash\_table.h}}"{}}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{iterator_8h}{iterator.h}}"{}}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structmerch}{merch}} \mbox{\hyperlink{structmerch}{merch\_t}};}
+\DoxyCodeLine{7 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structshelf}{shelf}} \mbox{\hyperlink{structshelf}{shelf\_t}};}
+\DoxyCodeLine{8 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structwebstore}{webstore}} \mbox{\hyperlink{structwebstore}{webstore\_t}};}
+\DoxyCodeLine{9 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structshopping__carts}{shopping\_carts}} \mbox{\hyperlink{structshopping__carts}{shopping\_carts\_t}};}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 }
+\DoxyCodeLine{21 \textcolor{keywordtype}{int} string\_hash(\mbox{\hyperlink{unionelem}{elem\_t}} e);}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{25 \mbox{\hyperlink{structwebstore}{webstore\_t}} *\mbox{\hyperlink{backend_8h_a8a4c2ed139e18001b33ec676c7f434ee}{db\_create\_webstore}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{33 \mbox{\hyperlink{structmerch}{merch\_t}} *\mbox{\hyperlink{backend_8h_aab69b2e9fb6d5414f7d066c7a59ab08d}{db\_create\_merch}}(\textcolor{keywordtype}{char} *name, \textcolor{keywordtype}{char} *desc, \textcolor{keywordtype}{int} price);}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{39 \mbox{\hyperlink{structshelf}{shelf\_t}} *\mbox{\hyperlink{backend_8h_ae293b6999394aa83efe7656a9af4a497}{db\_create\_shelf}}(\textcolor{keywordtype}{char} *shelf\_name, \textcolor{keywordtype}{int} shelf\_quantity);}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{43 \mbox{\hyperlink{structshopping__carts}{shopping\_carts\_t}} *\mbox{\hyperlink{backend_8h_a6378aab2270f72f4da7ba3b0d5353993}{db\_create\_cart}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{47 \textcolor{keywordtype}{void} \mbox{\hyperlink{backend_8h_a135967bebfb248df8c9f0a9ac453cb6d}{db\_destroy\_a\_merch}}(\mbox{\hyperlink{structmerch}{merch\_t}} *\mbox{\hyperlink{structmerch}{merch}});}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{53 \textcolor{keywordtype}{bool} \mbox{\hyperlink{backend_8h_ae84d2ee044de9b299b4f1cce60b0f46b}{db\_has\_key}}(\mbox{\hyperlink{structwebstore}{webstore\_t}} *db, \textcolor{keywordtype}{char} *name);}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{58 \textcolor{keywordtype}{void} \mbox{\hyperlink{backend_8h_a902ee5b5c11da932274f1ec48a36c4e3}{db\_add\_merch}}(\mbox{\hyperlink{structwebstore}{webstore\_t}} *db, \mbox{\hyperlink{structmerch}{merch\_t}} *\mbox{\hyperlink{structmerch}{merch}});}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{63 \textcolor{keywordtype}{int} \mbox{\hyperlink{backend_8h_a5e340025c6e076154e323d542f09bdd5}{db\_merch\_count}}(\mbox{\hyperlink{structwebstore}{webstore\_t}} *db);}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{67 \textcolor{keywordtype}{void} \mbox{\hyperlink{backend_8h_a1a286f85162b835d3d39a4c18ef07bc3}{db\_list\_merchs}}(\mbox{\hyperlink{structwebstore}{webstore\_t}} *db);}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{71 \textcolor{keywordtype}{void} \mbox{\hyperlink{backend_8h_a9b2dd2d13dddfe132d3e81615d2590ff}{db\_list\_a\_merch}}(\mbox{\hyperlink{structmerch}{merch\_t}} *\mbox{\hyperlink{structmerch}{merch}});}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{78 \mbox{\hyperlink{structmerch}{merch\_t}} *\mbox{\hyperlink{backend_8h_a470e8012ef38a5e7dc8e946c3705f6cc}{db\_get\_merch\_from\_name}}(\mbox{\hyperlink{structwebstore}{webstore\_t}} *db, \textcolor{keywordtype}{char} *name);}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{83 \textcolor{keywordtype}{void} \mbox{\hyperlink{backend_8h_a14b25e7e4444155d620c4f0e9011eb69}{db\_remove\_merch}}(\mbox{\hyperlink{structwebstore}{webstore\_t}} *db, \textcolor{keywordtype}{char} *name);}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{88 \textcolor{keywordtype}{void} \mbox{\hyperlink{backend_8h_acc4eaefc594ed13ecd893dc85940ffd0}{db\_remove\_merch\_from\_cart}}(\mbox{\hyperlink{structshopping__carts}{shopping\_carts\_t}} *cart, \textcolor{keywordtype}{char} *name);}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{97 \mbox{\hyperlink{structmerch}{merch\_t}} *\mbox{\hyperlink{backend_8h_abaac624c562203b33231f4caf036b007}{db\_edit\_merch}}(\mbox{\hyperlink{structwebstore}{webstore\_t}} *db, \mbox{\hyperlink{structmerch}{merch\_t}} *current\_merch, \textcolor{keywordtype}{char} *new\_name, \textcolor{keywordtype}{char} *new\_desc, \textcolor{keywordtype}{int} new\_price);}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{104 \mbox{\hyperlink{structmerch}{merch\_t}} *\mbox{\hyperlink{backend_8h_ac79cec810979ae0b2beb02a5be3490df}{db\_get\_merch}}(\mbox{\hyperlink{structwebstore}{webstore\_t}} *db, \textcolor{keywordtype}{char} *name);}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{109 \textcolor{keywordtype}{int} \mbox{\hyperlink{backend_8h_a91902cf00589539d6afcd8c0b93878d0}{db\_merch\_locations\_size}}(\mbox{\hyperlink{structmerch}{merch\_t}} *\mbox{\hyperlink{structmerch}{merch}});}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{113 \textcolor{keywordtype}{void} \mbox{\hyperlink{backend_8h_a77bcb951f09ffa3936652f6cea44c6aa}{db\_display\_stock}}(\mbox{\hyperlink{structmerch}{merch\_t}} *\mbox{\hyperlink{structmerch}{merch}});}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{119 \textcolor{keywordtype}{bool} \mbox{\hyperlink{backend_8h_a2e6aeec10538192fc3d12001b07c5737}{db\_location\_name\_exists\_in\_webstore}}(\mbox{\hyperlink{structwebstore}{webstore\_t}} *db, \textcolor{keywordtype}{char} *shelf\_name);}
+\DoxyCodeLine{120 }
+\DoxyCodeLine{125 \textcolor{keywordtype}{void} \mbox{\hyperlink{backend_8h_a61fccb32120f4376cd434d4fa3b6c8df}{db\_add\_location\_to\_merch}}(\mbox{\hyperlink{structmerch}{merch\_t}} *\mbox{\hyperlink{structmerch}{merch}}, \textcolor{keywordtype}{char} *shelf\_name, \textcolor{keywordtype}{int} new\_quantity);}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{132 \textcolor{keywordtype}{bool} \mbox{\hyperlink{backend_8h_aa70780d1fe02b084a481577671e2543c}{db\_edit\_location\_quantity}}(\mbox{\hyperlink{structmerch}{merch\_t}} *\mbox{\hyperlink{structmerch}{merch}}, \textcolor{keywordtype}{char} *shelf\_name, \textcolor{keywordtype}{int} new\_quantity);}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{137 \textcolor{keywordtype}{void} \mbox{\hyperlink{backend_8h_ab3974788f6a6eed8513b70c15e5d0bff}{db\_add\_cart}}(\mbox{\hyperlink{structwebstore}{webstore\_t}} *db, \mbox{\hyperlink{structshopping__carts}{shopping\_carts\_t}} *cart);}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{142 \textcolor{keywordtype}{int} \mbox{\hyperlink{backend_8h_aac0694bef6430ce3fe437533072bc606}{db\_carts\_size}}(\mbox{\hyperlink{structwebstore}{webstore\_t}} *db);}
+\DoxyCodeLine{143 }
+\DoxyCodeLine{148 \textcolor{keywordtype}{bool} \mbox{\hyperlink{backend_8h_aca1914416dd1c9ae9b3fe75a13f237c7}{db\_remove\_cart}}(\mbox{\hyperlink{structwebstore}{webstore\_t}} *db, \textcolor{keywordtype}{int} id\_choice);}
+\DoxyCodeLine{149 }
+\DoxyCodeLine{152 \textcolor{keywordtype}{void} \mbox{\hyperlink{backend_8h_a5375d338673c8d65e185b825650c6ee8}{db\_display\_cart\_ids}}(\mbox{\hyperlink{structwebstore}{webstore\_t}} *db);}
+\DoxyCodeLine{153 }
+\DoxyCodeLine{158 \mbox{\hyperlink{structshopping__carts}{shopping\_carts\_t}} *\mbox{\hyperlink{backend_8h_ae05c38a089d00690471b8e35b32cb1b4}{db\_get\_cart\_from\_id}}(\mbox{\hyperlink{structwebstore}{webstore\_t}} *db, \textcolor{keywordtype}{int} id\_choice);}
+\DoxyCodeLine{159 }
+\DoxyCodeLine{163 \textcolor{keywordtype}{int} \mbox{\hyperlink{backend_8h_af72296765effc80675e2dde43cecc8a6}{db\_lookup\_merch\_quantity\_in\_locations}}(\mbox{\hyperlink{structmerch}{merch\_t}} *\mbox{\hyperlink{structmerch}{merch}});}
+\DoxyCodeLine{164 }
+\DoxyCodeLine{169 \textcolor{keywordtype}{int} \mbox{\hyperlink{backend_8h_a4851c165735fd0542a707bf75cdc8099}{db\_lookup\_merch\_quantity\_in\_carts}}(\mbox{\hyperlink{structwebstore}{webstore\_t}} *db, \textcolor{keywordtype}{char} *merch\_name);}
+\DoxyCodeLine{170 }
+\DoxyCodeLine{175 \textcolor{keywordtype}{bool} \mbox{\hyperlink{backend_8h_ac4ec20849d1839eb503af9096307ccb1}{db\_cart\_has\_key}}(\mbox{\hyperlink{structshopping__carts}{shopping\_carts\_t}} *cart, \textcolor{keywordtype}{char} *merch\_name);}
+\DoxyCodeLine{176 }
+\DoxyCodeLine{181 \textcolor{keywordtype}{void} \mbox{\hyperlink{backend_8h_a7b8e39d27b3a720a9db6c699c9ef9d4d}{db\_update\_merch\_quantity\_in\_cart}}(\mbox{\hyperlink{structshopping__carts}{shopping\_carts\_t}} *cart, \textcolor{keywordtype}{char} *merch\_name, \textcolor{keywordtype}{int} new\_quantity);}
+\DoxyCodeLine{182 }
+\DoxyCodeLine{187 \textcolor{keywordtype}{void} \mbox{\hyperlink{backend_8h_a10af8a2a241183eef41cba9f500b8c4e}{db\_add\_merch\_to\_cart}}(\mbox{\hyperlink{structshopping__carts}{shopping\_carts\_t}} *cart, \textcolor{keywordtype}{char} *merch\_name, \textcolor{keywordtype}{int} new\_quantity);}
+\DoxyCodeLine{188 }
+\DoxyCodeLine{193 \textcolor{keywordtype}{int} \mbox{\hyperlink{backend_8h_a69d4f8bd60514762cc6028cb8fa831e1}{db\_calculate\_cost}}(\mbox{\hyperlink{structwebstore}{webstore\_t}} *db, \mbox{\hyperlink{structshopping__carts}{shopping\_carts\_t}} *cart);}
+\DoxyCodeLine{194 }
+\DoxyCodeLine{198 \textcolor{keywordtype}{void} \mbox{\hyperlink{backend_8h_a3347e16f53755c933aa68aa00326b86f}{db\_checkout}}(\mbox{\hyperlink{structwebstore}{webstore\_t}} *db, \mbox{\hyperlink{structshopping__carts}{shopping\_carts\_t}} *cart);}
+\DoxyCodeLine{199 }
+\DoxyCodeLine{203 \textcolor{keywordtype}{void} \mbox{\hyperlink{backend_8h_a845b47201715c79ce7ed44db9ca985f1}{db\_decrease\_locations\_quantities}}(\mbox{\hyperlink{structmerch}{merch\_t}} *\mbox{\hyperlink{structmerch}{merch}}, \textcolor{keywordtype}{int} quantity);}
+\DoxyCodeLine{204 }
+\DoxyCodeLine{207 \textcolor{keywordtype}{void} \mbox{\hyperlink{backend_8h_ada661b98b70ddcabfd0c395f3b9b08f8}{db\_destroy\_webstore}}(\mbox{\hyperlink{structwebstore}{webstore\_t}} *db);}
+\DoxyCodeLine{208 }
+\DoxyCodeLine{211 \textcolor{keywordtype}{void} \mbox{\hyperlink{backend_8h_ad9e2cffc88c4c45d68add3f601950240}{db\_destroy\_merchs}}(\mbox{\hyperlink{structhash__table}{ioopm\_hash\_table\_t}} *merchs);}
+\DoxyCodeLine{212 }
+\DoxyCodeLine{215 \textcolor{keywordtype}{void} \mbox{\hyperlink{backend_8h_a8e9d6b67561c2978bac00879e57485f2}{db\_destroy\_carts}}(\mbox{\hyperlink{structhash__table}{ioopm\_hash\_table\_t}} *carts);}
+\DoxyCodeLine{216 }
+\DoxyCodeLine{219 \textcolor{keywordtype}{void} \mbox{\hyperlink{backend_8h_ae022c11dff120489d64970f90704bc1b}{db\_destroy\_a\_cart}}(\mbox{\hyperlink{structshopping__carts}{shopping\_carts\_t}} *cart);}
+\DoxyCodeLine{220 }
+\DoxyCodeLine{221 }
+\DoxyCodeLine{227 \textcolor{keywordtype}{int} \mbox{\hyperlink{backend_8h_afd736a02f04fb05649bc2fc4067c1f95}{db\_lookup\_valid\_quantity}}(\mbox{\hyperlink{structwebstore}{webstore\_t}} *db, \mbox{\hyperlink{structmerch}{merch\_t}} *\mbox{\hyperlink{structmerch}{merch}}, \textcolor{keywordtype}{char} *merch\_name);}
+\DoxyCodeLine{228 }
+\DoxyCodeLine{229 }
+\DoxyCodeLine{230 \textcolor{comment}{//\#\#\# functions for testing \#\#\#}}
+\DoxyCodeLine{231 }
+\DoxyCodeLine{232 \textcolor{keywordtype}{char} *db\_get\_name(\mbox{\hyperlink{structmerch}{merch\_t}} *\mbox{\hyperlink{structmerch}{merch}});}
+\DoxyCodeLine{233 \textcolor{keywordtype}{char} *db\_get\_desc(\mbox{\hyperlink{structmerch}{merch\_t}} *\mbox{\hyperlink{structmerch}{merch}});}
+\DoxyCodeLine{234 \textcolor{keywordtype}{int} db\_get\_price(\mbox{\hyperlink{structmerch}{merch\_t}} *\mbox{\hyperlink{structmerch}{merch}});}
+\DoxyCodeLine{235 \textcolor{keywordtype}{int} db\_get\_merch\_location\_quantity(\mbox{\hyperlink{structmerch}{merch\_t}} *\mbox{\hyperlink{structmerch}{merch}}, \textcolor{keywordtype}{char} *shelf\_name);}
+\DoxyCodeLine{236 \textcolor{keywordtype}{int} db\_get\_merch\_quantity\_in\_a\_cart(\mbox{\hyperlink{structshopping__carts}{shopping\_carts\_t}} *cart, \textcolor{keywordtype}{char} *merch\_name);}
+
+\end{DoxyCode}

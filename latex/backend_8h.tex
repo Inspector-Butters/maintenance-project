@@ -1,0 +1,830 @@
+\hypertarget{backend_8h}{}\doxysection{backend.\+h File Reference}
+\label{backend_8h}\index{backend.h@{backend.h}}
+
+
+Backend of the Warehouse application.  
+
+
+{\ttfamily \#include \char`\"{}common.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}linked\+\_\+list.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}hash\+\_\+table.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}iterator.\+h\char`\"{}}\newline
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{backend_8h_a4f67b0f8da13af149a81190c5220cdd8}\label{backend_8h_a4f67b0f8da13af149a81190c5220cdd8}} 
+typedef struct \mbox{\hyperlink{structmerch}{merch}} {\bfseries merch\+\_\+t}
+\item 
+\mbox{\Hypertarget{backend_8h_aa22659a82ce63c9d49693304d0b318f3}\label{backend_8h_aa22659a82ce63c9d49693304d0b318f3}} 
+typedef struct \mbox{\hyperlink{structshelf}{shelf}} {\bfseries shelf\+\_\+t}
+\item 
+\mbox{\Hypertarget{backend_8h_acab2c761a7bd611f7a0484b6212e96f7}\label{backend_8h_acab2c761a7bd611f7a0484b6212e96f7}} 
+typedef struct \mbox{\hyperlink{structwebstore}{webstore}} {\bfseries webstore\+\_\+t}
+\item 
+\mbox{\Hypertarget{backend_8h_aec1f9c1437b2ddf717f9b59048a74cdf}\label{backend_8h_aec1f9c1437b2ddf717f9b59048a74cdf}} 
+typedef struct \mbox{\hyperlink{structshopping__carts}{shopping\+\_\+carts}} {\bfseries shopping\+\_\+carts\+\_\+t}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{backend_8h_ac75b352cec371013a440dde31d59a595}\label{backend_8h_ac75b352cec371013a440dde31d59a595}} 
+int {\bfseries string\+\_\+hash} (\mbox{\hyperlink{unionelem}{elem\+\_\+t}} e)
+\item 
+\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$ \mbox{\hyperlink{backend_8h_a8a4c2ed139e18001b33ec676c7f434ee}{db\+\_\+create\+\_\+webstore}} (void)
+\begin{DoxyCompactList}\small\item\em Creates a Webstore. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structmerch}{merch\+\_\+t}} $\ast$ \mbox{\hyperlink{backend_8h_aab69b2e9fb6d5414f7d066c7a59ab08d}{db\+\_\+create\+\_\+merch}} (char $\ast$name, char $\ast$desc, int price)
+\begin{DoxyCompactList}\small\item\em Allocates memory for a merchandise. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structshelf}{shelf\+\_\+t}} $\ast$ \mbox{\hyperlink{backend_8h_ae293b6999394aa83efe7656a9af4a497}{db\+\_\+create\+\_\+shelf}} (char $\ast$shelf\+\_\+name, int shelf\+\_\+quantity)
+\begin{DoxyCompactList}\small\item\em Allocates memory for a shelf. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structshopping__carts}{shopping\+\_\+carts\+\_\+t}} $\ast$ \mbox{\hyperlink{backend_8h_a6378aab2270f72f4da7ba3b0d5353993}{db\+\_\+create\+\_\+cart}} (void)
+\begin{DoxyCompactList}\small\item\em Creates a new shopping cart and allocates memory for it. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{backend_8h_a135967bebfb248df8c9f0a9ac453cb6d}{db\+\_\+destroy\+\_\+a\+\_\+merch}} (\mbox{\hyperlink{structmerch}{merch\+\_\+t}} $\ast$\mbox{\hyperlink{structmerch}{merch}})
+\begin{DoxyCompactList}\small\item\em Destroys a merchandise and frees all the memory associated with it. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{backend_8h_ae84d2ee044de9b299b4f1cce60b0f46b}{db\+\_\+has\+\_\+key}} (\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$db, char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Checks if the Webstore has a merchandise with the given name. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{backend_8h_a902ee5b5c11da932274f1ec48a36c4e3}{db\+\_\+add\+\_\+merch}} (\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$db, \mbox{\hyperlink{structmerch}{merch\+\_\+t}} $\ast$\mbox{\hyperlink{structmerch}{merch}})
+\begin{DoxyCompactList}\small\item\em Inserts a new merchandise into the Webstore. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{backend_8h_a5e340025c6e076154e323d542f09bdd5}{db\+\_\+merch\+\_\+count}} (\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$db)
+\begin{DoxyCompactList}\small\item\em Checks the number of merchandises in the Webstore. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{backend_8h_a1a286f85162b835d3d39a4c18ef07bc3}{db\+\_\+list\+\_\+merchs}} (\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$db)
+\begin{DoxyCompactList}\small\item\em Prints out the merchandises in the Webstore. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{backend_8h_a9b2dd2d13dddfe132d3e81615d2590ff}{db\+\_\+list\+\_\+a\+\_\+merch}} (\mbox{\hyperlink{structmerch}{merch\+\_\+t}} $\ast$\mbox{\hyperlink{structmerch}{merch}})
+\begin{DoxyCompactList}\small\item\em Prints out the contents of a merchandise. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structmerch}{merch\+\_\+t}} $\ast$ \mbox{\hyperlink{backend_8h_a470e8012ef38a5e7dc8e946c3705f6cc}{db\+\_\+get\+\_\+merch\+\_\+from\+\_\+name}} (\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$db, char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Searhes after a merchandise given its name. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{backend_8h_a14b25e7e4444155d620c4f0e9011eb69}{db\+\_\+remove\+\_\+merch}} (\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$db, char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Removes a merchandise from everywhere. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{backend_8h_acc4eaefc594ed13ecd893dc85940ffd0}{db\+\_\+remove\+\_\+merch\+\_\+from\+\_\+cart}} (\mbox{\hyperlink{structshopping__carts}{shopping\+\_\+carts\+\_\+t}} $\ast$cart, char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Removes a merchandise from the shopping cart. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structmerch}{merch\+\_\+t}} $\ast$ \mbox{\hyperlink{backend_8h_abaac624c562203b33231f4caf036b007}{db\+\_\+edit\+\_\+merch}} (\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$db, \mbox{\hyperlink{structmerch}{merch\+\_\+t}} $\ast$current\+\_\+merch, char $\ast$new\+\_\+name, char $\ast$new\+\_\+desc, int new\+\_\+price)
+\begin{DoxyCompactList}\small\item\em Edits the name, description and price of an existing merchandise. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structmerch}{merch\+\_\+t}} $\ast$ \mbox{\hyperlink{backend_8h_ac79cec810979ae0b2beb02a5be3490df}{db\+\_\+get\+\_\+merch}} (\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$db, char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Gets a merchandise from its name. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{backend_8h_a91902cf00589539d6afcd8c0b93878d0}{db\+\_\+merch\+\_\+locations\+\_\+size}} (\mbox{\hyperlink{structmerch}{merch\+\_\+t}} $\ast$\mbox{\hyperlink{structmerch}{merch}})
+\begin{DoxyCompactList}\small\item\em Checks how many shelves a merchandise have. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{backend_8h_a77bcb951f09ffa3936652f6cea44c6aa}{db\+\_\+display\+\_\+stock}} (\mbox{\hyperlink{structmerch}{merch\+\_\+t}} $\ast$\mbox{\hyperlink{structmerch}{merch}})
+\begin{DoxyCompactList}\small\item\em Prints out the shelf contents of a merchandise\textquotesingle{}s locations. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{backend_8h_a2e6aeec10538192fc3d12001b07c5737}{db\+\_\+location\+\_\+name\+\_\+exists\+\_\+in\+\_\+webstore}} (\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$db, char $\ast$shelf\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Iterates through the Webstore to check if a location with shelf\+\_\+name exists. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{backend_8h_a61fccb32120f4376cd434d4fa3b6c8df}{db\+\_\+add\+\_\+location\+\_\+to\+\_\+merch}} (\mbox{\hyperlink{structmerch}{merch\+\_\+t}} $\ast$\mbox{\hyperlink{structmerch}{merch}}, char $\ast$shelf\+\_\+name, int new\+\_\+quantity)
+\begin{DoxyCompactList}\small\item\em Adds a new location(shelf) to a merchandise. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{backend_8h_aa70780d1fe02b084a481577671e2543c}{db\+\_\+edit\+\_\+location\+\_\+quantity}} (\mbox{\hyperlink{structmerch}{merch\+\_\+t}} $\ast$\mbox{\hyperlink{structmerch}{merch}}, char $\ast$shelf\+\_\+name, int new\+\_\+quantity)
+\begin{DoxyCompactList}\small\item\em Attempts to edit and existing location(shelf) of a merchandise. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{backend_8h_ab3974788f6a6eed8513b70c15e5d0bff}{db\+\_\+add\+\_\+cart}} (\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$db, \mbox{\hyperlink{structshopping__carts}{shopping\+\_\+carts\+\_\+t}} $\ast$cart)
+\begin{DoxyCompactList}\small\item\em Adds a new shopping cart to the Webstore. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{backend_8h_aac0694bef6430ce3fe437533072bc606}{db\+\_\+carts\+\_\+size}} (\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$db)
+\begin{DoxyCompactList}\small\item\em Checks the amount of carts in the Webstore. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{backend_8h_aca1914416dd1c9ae9b3fe75a13f237c7}{db\+\_\+remove\+\_\+cart}} (\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$db, int id\+\_\+choice)
+\begin{DoxyCompactList}\small\item\em Removes a cart with given id from the Webstore. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{backend_8h_a5375d338673c8d65e185b825650c6ee8}{db\+\_\+display\+\_\+cart\+\_\+ids}} (\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$db)
+\begin{DoxyCompactList}\small\item\em Prints the active cart ids in the Webstore. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structshopping__carts}{shopping\+\_\+carts\+\_\+t}} $\ast$ \mbox{\hyperlink{backend_8h_ae05c38a089d00690471b8e35b32cb1b4}{db\+\_\+get\+\_\+cart\+\_\+from\+\_\+id}} (\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$db, int id\+\_\+choice)
+\begin{DoxyCompactList}\small\item\em Gets a cart given its id. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{backend_8h_af72296765effc80675e2dde43cecc8a6}{db\+\_\+lookup\+\_\+merch\+\_\+quantity\+\_\+in\+\_\+locations}} (\mbox{\hyperlink{structmerch}{merch\+\_\+t}} $\ast$\mbox{\hyperlink{structmerch}{merch}})
+\begin{DoxyCompactList}\small\item\em Checks the total amount of a merchandise in its locations. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{backend_8h_a4851c165735fd0542a707bf75cdc8099}{db\+\_\+lookup\+\_\+merch\+\_\+quantity\+\_\+in\+\_\+carts}} (\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$db, char $\ast$merch\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Checks the total amount of a merchandise in the Webstore\textquotesingle{}s carts. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{backend_8h_ac4ec20849d1839eb503af9096307ccb1}{db\+\_\+cart\+\_\+has\+\_\+key}} (\mbox{\hyperlink{structshopping__carts}{shopping\+\_\+carts\+\_\+t}} $\ast$cart, char $\ast$merch\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Checks if a cart has a merchandise. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{backend_8h_a7b8e39d27b3a720a9db6c699c9ef9d4d}{db\+\_\+update\+\_\+merch\+\_\+quantity\+\_\+in\+\_\+cart}} (\mbox{\hyperlink{structshopping__carts}{shopping\+\_\+carts\+\_\+t}} $\ast$cart, char $\ast$merch\+\_\+name, int new\+\_\+quantity)
+\begin{DoxyCompactList}\small\item\em Reinserts the total sum of existing and new quantity of a merchandise. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{backend_8h_a10af8a2a241183eef41cba9f500b8c4e}{db\+\_\+add\+\_\+merch\+\_\+to\+\_\+cart}} (\mbox{\hyperlink{structshopping__carts}{shopping\+\_\+carts\+\_\+t}} $\ast$cart, char $\ast$merch\+\_\+name, int new\+\_\+quantity)
+\begin{DoxyCompactList}\small\item\em Adds the given quantity of a merchandise in the shopping cart. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{backend_8h_a69d4f8bd60514762cc6028cb8fa831e1}{db\+\_\+calculate\+\_\+cost}} (\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$db, \mbox{\hyperlink{structshopping__carts}{shopping\+\_\+carts\+\_\+t}} $\ast$cart)
+\begin{DoxyCompactList}\small\item\em Calculates the cost of all merchandises in a shopping cart. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{backend_8h_a3347e16f53755c933aa68aa00326b86f}{db\+\_\+checkout}} (\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$db, \mbox{\hyperlink{structshopping__carts}{shopping\+\_\+carts\+\_\+t}} $\ast$cart)
+\begin{DoxyCompactList}\small\item\em Removes all of the merchandises and their amounths from the Webstore\textquotesingle{}s merchandise\textquotesingle{}s locations. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{backend_8h_a845b47201715c79ce7ed44db9ca985f1}{db\+\_\+decrease\+\_\+locations\+\_\+quantities}} (\mbox{\hyperlink{structmerch}{merch\+\_\+t}} $\ast$\mbox{\hyperlink{structmerch}{merch}}, int quantity)
+\begin{DoxyCompactList}\small\item\em Decreases the locations\textquotesingle{}s(shelves) quantities untill given quantity is zero. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{backend_8h_ada661b98b70ddcabfd0c395f3b9b08f8}{db\+\_\+destroy\+\_\+webstore}} (\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$db)
+\begin{DoxyCompactList}\small\item\em Destroys the webstore frees all the memory allocated by the datastructures. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{backend_8h_ad9e2cffc88c4c45d68add3f601950240}{db\+\_\+destroy\+\_\+merchs}} (\mbox{\hyperlink{structhash__table}{ioopm\+\_\+hash\+\_\+table\+\_\+t}} $\ast$merchs)
+\begin{DoxyCompactList}\small\item\em Destroys the merchandises in the database and frees the memories allocated by them. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{backend_8h_a8e9d6b67561c2978bac00879e57485f2}{db\+\_\+destroy\+\_\+carts}} (\mbox{\hyperlink{structhash__table}{ioopm\+\_\+hash\+\_\+table\+\_\+t}} $\ast$carts)
+\begin{DoxyCompactList}\small\item\em Destroys the shopping carts in the database and frees the memories allocated by them. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{backend_8h_ae022c11dff120489d64970f90704bc1b}{db\+\_\+destroy\+\_\+a\+\_\+cart}} (\mbox{\hyperlink{structshopping__carts}{shopping\+\_\+carts\+\_\+t}} $\ast$cart)
+\begin{DoxyCompactList}\small\item\em Destroys a cart and frees all the memory associated with it. It does not destroy the merchandises. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{backend_8h_afd736a02f04fb05649bc2fc4067c1f95}{db\+\_\+lookup\+\_\+valid\+\_\+quantity}} (\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$db, \mbox{\hyperlink{structmerch}{merch\+\_\+t}} $\ast$\mbox{\hyperlink{structmerch}{merch}}, char $\ast$merch\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Calculates the valid quantity an user can enter. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{backend_8h_a6f805d59b5d8ba9c46fbe99453a33a71}\label{backend_8h_a6f805d59b5d8ba9c46fbe99453a33a71}} 
+char $\ast$ {\bfseries db\+\_\+get\+\_\+name} (\mbox{\hyperlink{structmerch}{merch\+\_\+t}} $\ast$\mbox{\hyperlink{structmerch}{merch}})
+\item 
+\mbox{\Hypertarget{backend_8h_a1dfe801550b183093e25ecd5f13f0d33}\label{backend_8h_a1dfe801550b183093e25ecd5f13f0d33}} 
+char $\ast$ {\bfseries db\+\_\+get\+\_\+desc} (\mbox{\hyperlink{structmerch}{merch\+\_\+t}} $\ast$\mbox{\hyperlink{structmerch}{merch}})
+\item 
+\mbox{\Hypertarget{backend_8h_a52973e3683fd9aea287bd7520f9606fe}\label{backend_8h_a52973e3683fd9aea287bd7520f9606fe}} 
+int {\bfseries db\+\_\+get\+\_\+price} (\mbox{\hyperlink{structmerch}{merch\+\_\+t}} $\ast$\mbox{\hyperlink{structmerch}{merch}})
+\item 
+\mbox{\Hypertarget{backend_8h_a5af8862a6ea759db3d552ff7e97bfe68}\label{backend_8h_a5af8862a6ea759db3d552ff7e97bfe68}} 
+int {\bfseries db\+\_\+get\+\_\+merch\+\_\+location\+\_\+quantity} (\mbox{\hyperlink{structmerch}{merch\+\_\+t}} $\ast$\mbox{\hyperlink{structmerch}{merch}}, char $\ast$shelf\+\_\+name)
+\item 
+\mbox{\Hypertarget{backend_8h_a914a98fe6907e1680d76824afd13f24e}\label{backend_8h_a914a98fe6907e1680d76824afd13f24e}} 
+int {\bfseries db\+\_\+get\+\_\+merch\+\_\+quantity\+\_\+in\+\_\+a\+\_\+cart} (\mbox{\hyperlink{structshopping__carts}{shopping\+\_\+carts\+\_\+t}} $\ast$cart, char $\ast$merch\+\_\+name)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Backend of the Warehouse application. 
+
+\begin{DoxyAuthor}{Author}
+Erdem Garip 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+15 Nov 2022  
+\end{DoxyDate}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{backend_8h_ab3974788f6a6eed8513b70c15e5d0bff}\label{backend_8h_ab3974788f6a6eed8513b70c15e5d0bff}} 
+\index{backend.h@{backend.h}!db\_add\_cart@{db\_add\_cart}}
+\index{db\_add\_cart@{db\_add\_cart}!backend.h@{backend.h}}
+\doxysubsubsection{\texorpdfstring{db\_add\_cart()}{db\_add\_cart()}}
+{\footnotesize\ttfamily void db\+\_\+add\+\_\+cart (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$}]{db,  }\item[{\mbox{\hyperlink{structshopping__carts}{shopping\+\_\+carts\+\_\+t}} $\ast$}]{cart }\end{DoxyParamCaption})}
+
+
+
+Adds a new shopping cart to the Webstore. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & The webstore \\
+\hline
+{\em cart} & the new cart \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{backend_8h_a61fccb32120f4376cd434d4fa3b6c8df}\label{backend_8h_a61fccb32120f4376cd434d4fa3b6c8df}} 
+\index{backend.h@{backend.h}!db\_add\_location\_to\_merch@{db\_add\_location\_to\_merch}}
+\index{db\_add\_location\_to\_merch@{db\_add\_location\_to\_merch}!backend.h@{backend.h}}
+\doxysubsubsection{\texorpdfstring{db\_add\_location\_to\_merch()}{db\_add\_location\_to\_merch()}}
+{\footnotesize\ttfamily void db\+\_\+add\+\_\+location\+\_\+to\+\_\+merch (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmerch}{merch\+\_\+t}} $\ast$}]{merch,  }\item[{char $\ast$}]{shelf\+\_\+name,  }\item[{int}]{new\+\_\+quantity }\end{DoxyParamCaption})}
+
+
+
+Adds a new location(shelf) to a merchandise. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em merch} & The merchandise \\
+\hline
+{\em shelf\+\_\+name} & The name of the new location \\
+\hline
+{\em new\+\_\+quantity} & The quantity of the new location \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{backend_8h_a902ee5b5c11da932274f1ec48a36c4e3}\label{backend_8h_a902ee5b5c11da932274f1ec48a36c4e3}} 
+\index{backend.h@{backend.h}!db\_add\_merch@{db\_add\_merch}}
+\index{db\_add\_merch@{db\_add\_merch}!backend.h@{backend.h}}
+\doxysubsubsection{\texorpdfstring{db\_add\_merch()}{db\_add\_merch()}}
+{\footnotesize\ttfamily void db\+\_\+add\+\_\+merch (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$}]{db,  }\item[{\mbox{\hyperlink{structmerch}{merch\+\_\+t}} $\ast$}]{merch }\end{DoxyParamCaption})}
+
+
+
+Inserts a new merchandise into the Webstore. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & The Webstore \\
+\hline
+{\em merch} & A merchandise \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{backend_8h_a10af8a2a241183eef41cba9f500b8c4e}\label{backend_8h_a10af8a2a241183eef41cba9f500b8c4e}} 
+\index{backend.h@{backend.h}!db\_add\_merch\_to\_cart@{db\_add\_merch\_to\_cart}}
+\index{db\_add\_merch\_to\_cart@{db\_add\_merch\_to\_cart}!backend.h@{backend.h}}
+\doxysubsubsection{\texorpdfstring{db\_add\_merch\_to\_cart()}{db\_add\_merch\_to\_cart()}}
+{\footnotesize\ttfamily void db\+\_\+add\+\_\+merch\+\_\+to\+\_\+cart (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structshopping__carts}{shopping\+\_\+carts\+\_\+t}} $\ast$}]{cart,  }\item[{char $\ast$}]{merch\+\_\+name,  }\item[{int}]{new\+\_\+quantity }\end{DoxyParamCaption})}
+
+
+
+Adds the given quantity of a merchandise in the shopping cart. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cart} & The shopping cart \\
+\hline
+{\em merch\+\_\+name} & The merchandise\textquotesingle{}s name \\
+\hline
+{\em new\+\_\+quantity} & The quantity of the merchandise \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{backend_8h_a69d4f8bd60514762cc6028cb8fa831e1}\label{backend_8h_a69d4f8bd60514762cc6028cb8fa831e1}} 
+\index{backend.h@{backend.h}!db\_calculate\_cost@{db\_calculate\_cost}}
+\index{db\_calculate\_cost@{db\_calculate\_cost}!backend.h@{backend.h}}
+\doxysubsubsection{\texorpdfstring{db\_calculate\_cost()}{db\_calculate\_cost()}}
+{\footnotesize\ttfamily int db\+\_\+calculate\+\_\+cost (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$}]{db,  }\item[{\mbox{\hyperlink{structshopping__carts}{shopping\+\_\+carts\+\_\+t}} $\ast$}]{cart }\end{DoxyParamCaption})}
+
+
+
+Calculates the cost of all merchandises in a shopping cart. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & The database \\
+\hline
+{\em cart} & The shopping cart \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The total price of all merchandises in a cart 
+\end{DoxyReturn}
+\mbox{\Hypertarget{backend_8h_ac4ec20849d1839eb503af9096307ccb1}\label{backend_8h_ac4ec20849d1839eb503af9096307ccb1}} 
+\index{backend.h@{backend.h}!db\_cart\_has\_key@{db\_cart\_has\_key}}
+\index{db\_cart\_has\_key@{db\_cart\_has\_key}!backend.h@{backend.h}}
+\doxysubsubsection{\texorpdfstring{db\_cart\_has\_key()}{db\_cart\_has\_key()}}
+{\footnotesize\ttfamily bool db\+\_\+cart\+\_\+has\+\_\+key (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structshopping__carts}{shopping\+\_\+carts\+\_\+t}} $\ast$}]{cart,  }\item[{char $\ast$}]{merch\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Checks if a cart has a merchandise. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cart} & The shopping cart \\
+\hline
+{\em merch\+\_\+name} & The merchandise name \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the merchandise exists in the cart 
+\end{DoxyReturn}
+\mbox{\Hypertarget{backend_8h_aac0694bef6430ce3fe437533072bc606}\label{backend_8h_aac0694bef6430ce3fe437533072bc606}} 
+\index{backend.h@{backend.h}!db\_carts\_size@{db\_carts\_size}}
+\index{db\_carts\_size@{db\_carts\_size}!backend.h@{backend.h}}
+\doxysubsubsection{\texorpdfstring{db\_carts\_size()}{db\_carts\_size()}}
+{\footnotesize\ttfamily int db\+\_\+carts\+\_\+size (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$}]{db }\end{DoxyParamCaption})}
+
+
+
+Checks the amount of carts in the Webstore. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & The webstore \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Quantity of carts in Webstore 
+\end{DoxyReturn}
+\mbox{\Hypertarget{backend_8h_a3347e16f53755c933aa68aa00326b86f}\label{backend_8h_a3347e16f53755c933aa68aa00326b86f}} 
+\index{backend.h@{backend.h}!db\_checkout@{db\_checkout}}
+\index{db\_checkout@{db\_checkout}!backend.h@{backend.h}}
+\doxysubsubsection{\texorpdfstring{db\_checkout()}{db\_checkout()}}
+{\footnotesize\ttfamily void db\+\_\+checkout (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$}]{db,  }\item[{\mbox{\hyperlink{structshopping__carts}{shopping\+\_\+carts\+\_\+t}} $\ast$}]{cart }\end{DoxyParamCaption})}
+
+
+
+Removes all of the merchandises and their amounths from the Webstore\textquotesingle{}s merchandise\textquotesingle{}s locations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & The Webstore \\
+\hline
+{\em cart} & The Shopping cart \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{backend_8h_a6378aab2270f72f4da7ba3b0d5353993}\label{backend_8h_a6378aab2270f72f4da7ba3b0d5353993}} 
+\index{backend.h@{backend.h}!db\_create\_cart@{db\_create\_cart}}
+\index{db\_create\_cart@{db\_create\_cart}!backend.h@{backend.h}}
+\doxysubsubsection{\texorpdfstring{db\_create\_cart()}{db\_create\_cart()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structshopping__carts}{shopping\+\_\+carts\+\_\+t}} $\ast$ db\+\_\+create\+\_\+cart (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Creates a new shopping cart and allocates memory for it. 
+
+\begin{DoxyReturn}{Returns}
+A new shopping cart 
+\end{DoxyReturn}
+\mbox{\Hypertarget{backend_8h_aab69b2e9fb6d5414f7d066c7a59ab08d}\label{backend_8h_aab69b2e9fb6d5414f7d066c7a59ab08d}} 
+\index{backend.h@{backend.h}!db\_create\_merch@{db\_create\_merch}}
+\index{db\_create\_merch@{db\_create\_merch}!backend.h@{backend.h}}
+\doxysubsubsection{\texorpdfstring{db\_create\_merch()}{db\_create\_merch()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structmerch}{merch\+\_\+t}} $\ast$ db\+\_\+create\+\_\+merch (\begin{DoxyParamCaption}\item[{char $\ast$}]{name,  }\item[{char $\ast$}]{desc,  }\item[{int}]{price }\end{DoxyParamCaption})}
+
+
+
+Allocates memory for a merchandise. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the merchandises name \\
+\hline
+{\em desc} & the description of the merchandise \\
+\hline
+{\em price} & the price of the merchandise \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+The price is positive, this property is checked and ensured in frontend 
+\end{DoxyPrecond}
+\begin{DoxyReturn}{Returns}
+A merchandise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{backend_8h_ae293b6999394aa83efe7656a9af4a497}\label{backend_8h_ae293b6999394aa83efe7656a9af4a497}} 
+\index{backend.h@{backend.h}!db\_create\_shelf@{db\_create\_shelf}}
+\index{db\_create\_shelf@{db\_create\_shelf}!backend.h@{backend.h}}
+\doxysubsubsection{\texorpdfstring{db\_create\_shelf()}{db\_create\_shelf()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structshelf}{shelf\+\_\+t}} $\ast$ db\+\_\+create\+\_\+shelf (\begin{DoxyParamCaption}\item[{char $\ast$}]{shelf\+\_\+name,  }\item[{int}]{shelf\+\_\+quantity }\end{DoxyParamCaption})}
+
+
+
+Allocates memory for a shelf. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em shelf\+\_\+name} & the shelfs name \\
+\hline
+{\em shelf\+\_\+quantity} & the quantity held in shelf \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A shelf 
+\end{DoxyReturn}
+\mbox{\Hypertarget{backend_8h_a8a4c2ed139e18001b33ec676c7f434ee}\label{backend_8h_a8a4c2ed139e18001b33ec676c7f434ee}} 
+\index{backend.h@{backend.h}!db\_create\_webstore@{db\_create\_webstore}}
+\index{db\_create\_webstore@{db\_create\_webstore}!backend.h@{backend.h}}
+\doxysubsubsection{\texorpdfstring{db\_create\_webstore()}{db\_create\_webstore()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$ db\+\_\+create\+\_\+webstore (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Creates a Webstore. 
+
+\begin{DoxyReturn}{Returns}
+A webstore consisting of two hastables db-\/\texorpdfstring{$>$}{>}merches and db-\/\texorpdfstring{$>$}{>}carts 
+\end{DoxyReturn}
+\mbox{\Hypertarget{backend_8h_a845b47201715c79ce7ed44db9ca985f1}\label{backend_8h_a845b47201715c79ce7ed44db9ca985f1}} 
+\index{backend.h@{backend.h}!db\_decrease\_locations\_quantities@{db\_decrease\_locations\_quantities}}
+\index{db\_decrease\_locations\_quantities@{db\_decrease\_locations\_quantities}!backend.h@{backend.h}}
+\doxysubsubsection{\texorpdfstring{db\_decrease\_locations\_quantities()}{db\_decrease\_locations\_quantities()}}
+{\footnotesize\ttfamily void db\+\_\+decrease\+\_\+locations\+\_\+quantities (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmerch}{merch\+\_\+t}} $\ast$}]{merch,  }\item[{int}]{quantity }\end{DoxyParamCaption})}
+
+
+
+Decreases the locations\textquotesingle{}s(shelves) quantities untill given quantity is zero. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em merch} & The merchandise \\
+\hline
+{\em quantity} & The amount of quantity to decrease in locations \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{backend_8h_ae022c11dff120489d64970f90704bc1b}\label{backend_8h_ae022c11dff120489d64970f90704bc1b}} 
+\index{backend.h@{backend.h}!db\_destroy\_a\_cart@{db\_destroy\_a\_cart}}
+\index{db\_destroy\_a\_cart@{db\_destroy\_a\_cart}!backend.h@{backend.h}}
+\doxysubsubsection{\texorpdfstring{db\_destroy\_a\_cart()}{db\_destroy\_a\_cart()}}
+{\footnotesize\ttfamily void db\+\_\+destroy\+\_\+a\+\_\+cart (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structshopping__carts}{shopping\+\_\+carts\+\_\+t}} $\ast$}]{cart }\end{DoxyParamCaption})}
+
+
+
+Destroys a cart and frees all the memory associated with it. It does not destroy the merchandises. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & The shopping cart struct \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{backend_8h_a135967bebfb248df8c9f0a9ac453cb6d}\label{backend_8h_a135967bebfb248df8c9f0a9ac453cb6d}} 
+\index{backend.h@{backend.h}!db\_destroy\_a\_merch@{db\_destroy\_a\_merch}}
+\index{db\_destroy\_a\_merch@{db\_destroy\_a\_merch}!backend.h@{backend.h}}
+\doxysubsubsection{\texorpdfstring{db\_destroy\_a\_merch()}{db\_destroy\_a\_merch()}}
+{\footnotesize\ttfamily void db\+\_\+destroy\+\_\+a\+\_\+merch (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmerch}{merch\+\_\+t}} $\ast$}]{merch }\end{DoxyParamCaption})}
+
+
+
+Destroys a merchandise and frees all the memory associated with it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & The merchandise struct \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{backend_8h_a8e9d6b67561c2978bac00879e57485f2}\label{backend_8h_a8e9d6b67561c2978bac00879e57485f2}} 
+\index{backend.h@{backend.h}!db\_destroy\_carts@{db\_destroy\_carts}}
+\index{db\_destroy\_carts@{db\_destroy\_carts}!backend.h@{backend.h}}
+\doxysubsubsection{\texorpdfstring{db\_destroy\_carts()}{db\_destroy\_carts()}}
+{\footnotesize\ttfamily void db\+\_\+destroy\+\_\+carts (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhash__table}{ioopm\+\_\+hash\+\_\+table\+\_\+t}} $\ast$}]{carts }\end{DoxyParamCaption})}
+
+
+
+Destroys the shopping carts in the database and frees the memories allocated by them. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & Key-\/value pairs are key=\texorpdfstring{$>$}{>}cart\+\_\+id, value=\texorpdfstring{$>$}{>}shopping\+\_\+cart. The shopping\+\_\+cart itslef is key=\texorpdfstring{$>$}{>}name, value=\texorpdfstring{$>$}{>}quantity \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{backend_8h_ad9e2cffc88c4c45d68add3f601950240}\label{backend_8h_ad9e2cffc88c4c45d68add3f601950240}} 
+\index{backend.h@{backend.h}!db\_destroy\_merchs@{db\_destroy\_merchs}}
+\index{db\_destroy\_merchs@{db\_destroy\_merchs}!backend.h@{backend.h}}
+\doxysubsubsection{\texorpdfstring{db\_destroy\_merchs()}{db\_destroy\_merchs()}}
+{\footnotesize\ttfamily void db\+\_\+destroy\+\_\+merchs (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhash__table}{ioopm\+\_\+hash\+\_\+table\+\_\+t}} $\ast$}]{merchs }\end{DoxyParamCaption})}
+
+
+
+Destroys the merchandises in the database and frees the memories allocated by them. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & The hashtable where key-\/value pairs are key=\texorpdfstring{$>$}{>}merch\+\_\+name, value=\texorpdfstring{$>$}{>}merch \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{backend_8h_ada661b98b70ddcabfd0c395f3b9b08f8}\label{backend_8h_ada661b98b70ddcabfd0c395f3b9b08f8}} 
+\index{backend.h@{backend.h}!db\_destroy\_webstore@{db\_destroy\_webstore}}
+\index{db\_destroy\_webstore@{db\_destroy\_webstore}!backend.h@{backend.h}}
+\doxysubsubsection{\texorpdfstring{db\_destroy\_webstore()}{db\_destroy\_webstore()}}
+{\footnotesize\ttfamily void db\+\_\+destroy\+\_\+webstore (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$}]{db }\end{DoxyParamCaption})}
+
+
+
+Destroys the webstore frees all the memory allocated by the datastructures. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & The webstore to destroy \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{backend_8h_a5375d338673c8d65e185b825650c6ee8}\label{backend_8h_a5375d338673c8d65e185b825650c6ee8}} 
+\index{backend.h@{backend.h}!db\_display\_cart\_ids@{db\_display\_cart\_ids}}
+\index{db\_display\_cart\_ids@{db\_display\_cart\_ids}!backend.h@{backend.h}}
+\doxysubsubsection{\texorpdfstring{db\_display\_cart\_ids()}{db\_display\_cart\_ids()}}
+{\footnotesize\ttfamily void db\+\_\+display\+\_\+cart\+\_\+ids (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$}]{db }\end{DoxyParamCaption})}
+
+
+
+Prints the active cart ids in the Webstore. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & The webstore \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{backend_8h_a77bcb951f09ffa3936652f6cea44c6aa}\label{backend_8h_a77bcb951f09ffa3936652f6cea44c6aa}} 
+\index{backend.h@{backend.h}!db\_display\_stock@{db\_display\_stock}}
+\index{db\_display\_stock@{db\_display\_stock}!backend.h@{backend.h}}
+\doxysubsubsection{\texorpdfstring{db\_display\_stock()}{db\_display\_stock()}}
+{\footnotesize\ttfamily void db\+\_\+display\+\_\+stock (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmerch}{merch\+\_\+t}} $\ast$}]{merch }\end{DoxyParamCaption})}
+
+
+
+Prints out the shelf contents of a merchandise\textquotesingle{}s locations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em merch} & The merchandise to display \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{backend_8h_aa70780d1fe02b084a481577671e2543c}\label{backend_8h_aa70780d1fe02b084a481577671e2543c}} 
+\index{backend.h@{backend.h}!db\_edit\_location\_quantity@{db\_edit\_location\_quantity}}
+\index{db\_edit\_location\_quantity@{db\_edit\_location\_quantity}!backend.h@{backend.h}}
+\doxysubsubsection{\texorpdfstring{db\_edit\_location\_quantity()}{db\_edit\_location\_quantity()}}
+{\footnotesize\ttfamily bool db\+\_\+edit\+\_\+location\+\_\+quantity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmerch}{merch\+\_\+t}} $\ast$}]{merch,  }\item[{char $\ast$}]{shelf\+\_\+name,  }\item[{int}]{new\+\_\+quantity }\end{DoxyParamCaption})}
+
+
+
+Attempts to edit and existing location(shelf) of a merchandise. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em merch} & The merchandise \\
+\hline
+{\em shelf\+\_\+name} & The location\textquotesingle{}s name \\
+\hline
+{\em new\+\_\+quantity} & The new quantity of the location \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if a location with given name exists 
+\end{DoxyReturn}
+\mbox{\Hypertarget{backend_8h_abaac624c562203b33231f4caf036b007}\label{backend_8h_abaac624c562203b33231f4caf036b007}} 
+\index{backend.h@{backend.h}!db\_edit\_merch@{db\_edit\_merch}}
+\index{db\_edit\_merch@{db\_edit\_merch}!backend.h@{backend.h}}
+\doxysubsubsection{\texorpdfstring{db\_edit\_merch()}{db\_edit\_merch()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structmerch}{merch\+\_\+t}} $\ast$ db\+\_\+edit\+\_\+merch (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$}]{db,  }\item[{\mbox{\hyperlink{structmerch}{merch\+\_\+t}} $\ast$}]{current\+\_\+merch,  }\item[{char $\ast$}]{new\+\_\+name,  }\item[{char $\ast$}]{new\+\_\+desc,  }\item[{int}]{new\+\_\+price }\end{DoxyParamCaption})}
+
+
+
+Edits the name, description and price of an existing merchandise. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & the Webstore \\
+\hline
+{\em current\+\_\+merch} & currently existing merch \\
+\hline
+{\em new\+\_\+name} & the new name of the current merchandise \\
+\hline
+{\em new\+\_\+desc} & the new description of the current merchandise \\
+\hline
+{\em new\+\_\+price} & the new price of the current merchandise \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the edited merchandise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{backend_8h_ae05c38a089d00690471b8e35b32cb1b4}\label{backend_8h_ae05c38a089d00690471b8e35b32cb1b4}} 
+\index{backend.h@{backend.h}!db\_get\_cart\_from\_id@{db\_get\_cart\_from\_id}}
+\index{db\_get\_cart\_from\_id@{db\_get\_cart\_from\_id}!backend.h@{backend.h}}
+\doxysubsubsection{\texorpdfstring{db\_get\_cart\_from\_id()}{db\_get\_cart\_from\_id()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structshopping__carts}{shopping\+\_\+carts\+\_\+t}} $\ast$ db\+\_\+get\+\_\+cart\+\_\+from\+\_\+id (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$}]{db,  }\item[{int}]{id\+\_\+choice }\end{DoxyParamCaption})}
+
+
+
+Gets a cart given its id. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & The webstore \\
+\hline
+{\em id\+\_\+choice} & The id of the sought cart \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The cart if id exists in the Webstore 
+\end{DoxyReturn}
+\mbox{\Hypertarget{backend_8h_ac79cec810979ae0b2beb02a5be3490df}\label{backend_8h_ac79cec810979ae0b2beb02a5be3490df}} 
+\index{backend.h@{backend.h}!db\_get\_merch@{db\_get\_merch}}
+\index{db\_get\_merch@{db\_get\_merch}!backend.h@{backend.h}}
+\doxysubsubsection{\texorpdfstring{db\_get\_merch()}{db\_get\_merch()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structmerch}{merch\+\_\+t}} $\ast$ db\+\_\+get\+\_\+merch (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$}]{db,  }\item[{char $\ast$}]{name }\end{DoxyParamCaption})}
+
+
+
+Gets a merchandise from its name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & The webstore \\
+\hline
+{\em name} & The name of the merchandise \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The merchandise 
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+A merchandise of given name exists 
+\end{DoxyPrecond}
+\mbox{\Hypertarget{backend_8h_a470e8012ef38a5e7dc8e946c3705f6cc}\label{backend_8h_a470e8012ef38a5e7dc8e946c3705f6cc}} 
+\index{backend.h@{backend.h}!db\_get\_merch\_from\_name@{db\_get\_merch\_from\_name}}
+\index{db\_get\_merch\_from\_name@{db\_get\_merch\_from\_name}!backend.h@{backend.h}}
+\doxysubsubsection{\texorpdfstring{db\_get\_merch\_from\_name()}{db\_get\_merch\_from\_name()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structmerch}{merch\+\_\+t}} $\ast$ db\+\_\+get\+\_\+merch\+\_\+from\+\_\+name (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$}]{db,  }\item[{char $\ast$}]{name }\end{DoxyParamCaption})}
+
+
+
+Searhes after a merchandise given its name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & The webstore to lookup \\
+\hline
+{\em name} & The name of the merchandise \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The merchandise of given name 
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+A merchandise with the given name exists 
+\end{DoxyPrecond}
+\mbox{\Hypertarget{backend_8h_ae84d2ee044de9b299b4f1cce60b0f46b}\label{backend_8h_ae84d2ee044de9b299b4f1cce60b0f46b}} 
+\index{backend.h@{backend.h}!db\_has\_key@{db\_has\_key}}
+\index{db\_has\_key@{db\_has\_key}!backend.h@{backend.h}}
+\doxysubsubsection{\texorpdfstring{db\_has\_key()}{db\_has\_key()}}
+{\footnotesize\ttfamily bool db\+\_\+has\+\_\+key (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$}]{db,  }\item[{char $\ast$}]{name }\end{DoxyParamCaption})}
+
+
+
+Checks if the Webstore has a merchandise with the given name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & The Webstore \\
+\hline
+{\em name} & The given name \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the given name does not exist in the Webstore 
+\end{DoxyReturn}
+\mbox{\Hypertarget{backend_8h_a9b2dd2d13dddfe132d3e81615d2590ff}\label{backend_8h_a9b2dd2d13dddfe132d3e81615d2590ff}} 
+\index{backend.h@{backend.h}!db\_list\_a\_merch@{db\_list\_a\_merch}}
+\index{db\_list\_a\_merch@{db\_list\_a\_merch}!backend.h@{backend.h}}
+\doxysubsubsection{\texorpdfstring{db\_list\_a\_merch()}{db\_list\_a\_merch()}}
+{\footnotesize\ttfamily void db\+\_\+list\+\_\+a\+\_\+merch (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmerch}{merch\+\_\+t}} $\ast$}]{merch }\end{DoxyParamCaption})}
+
+
+
+Prints out the contents of a merchandise. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & The merchandise to display \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{backend_8h_a1a286f85162b835d3d39a4c18ef07bc3}\label{backend_8h_a1a286f85162b835d3d39a4c18ef07bc3}} 
+\index{backend.h@{backend.h}!db\_list\_merchs@{db\_list\_merchs}}
+\index{db\_list\_merchs@{db\_list\_merchs}!backend.h@{backend.h}}
+\doxysubsubsection{\texorpdfstring{db\_list\_merchs()}{db\_list\_merchs()}}
+{\footnotesize\ttfamily void db\+\_\+list\+\_\+merchs (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$}]{db }\end{DoxyParamCaption})}
+
+
+
+Prints out the merchandises in the Webstore. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & The webstore to print \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{backend_8h_a2e6aeec10538192fc3d12001b07c5737}\label{backend_8h_a2e6aeec10538192fc3d12001b07c5737}} 
+\index{backend.h@{backend.h}!db\_location\_name\_exists\_in\_webstore@{db\_location\_name\_exists\_in\_webstore}}
+\index{db\_location\_name\_exists\_in\_webstore@{db\_location\_name\_exists\_in\_webstore}!backend.h@{backend.h}}
+\doxysubsubsection{\texorpdfstring{db\_location\_name\_exists\_in\_webstore()}{db\_location\_name\_exists\_in\_webstore()}}
+{\footnotesize\ttfamily bool db\+\_\+location\+\_\+name\+\_\+exists\+\_\+in\+\_\+webstore (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$}]{db,  }\item[{char $\ast$}]{shelf\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Iterates through the Webstore to check if a location with shelf\+\_\+name exists. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & The Webstore \\
+\hline
+{\em shelf\+\_\+name} & The new shelf name \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if there is a location(shelf) with the same name as shelf\+\_\+name 
+\end{DoxyReturn}
+\mbox{\Hypertarget{backend_8h_a4851c165735fd0542a707bf75cdc8099}\label{backend_8h_a4851c165735fd0542a707bf75cdc8099}} 
+\index{backend.h@{backend.h}!db\_lookup\_merch\_quantity\_in\_carts@{db\_lookup\_merch\_quantity\_in\_carts}}
+\index{db\_lookup\_merch\_quantity\_in\_carts@{db\_lookup\_merch\_quantity\_in\_carts}!backend.h@{backend.h}}
+\doxysubsubsection{\texorpdfstring{db\_lookup\_merch\_quantity\_in\_carts()}{db\_lookup\_merch\_quantity\_in\_carts()}}
+{\footnotesize\ttfamily int db\+\_\+lookup\+\_\+merch\+\_\+quantity\+\_\+in\+\_\+carts (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$}]{db,  }\item[{char $\ast$}]{merch\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Checks the total amount of a merchandise in the Webstore\textquotesingle{}s carts. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & The webstore \\
+\hline
+{\em merch\+\_\+name} & The sought merchandise \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The sum of all quantities of a merchandise in the Webstore\textquotesingle{}s carts. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{backend_8h_af72296765effc80675e2dde43cecc8a6}\label{backend_8h_af72296765effc80675e2dde43cecc8a6}} 
+\index{backend.h@{backend.h}!db\_lookup\_merch\_quantity\_in\_locations@{db\_lookup\_merch\_quantity\_in\_locations}}
+\index{db\_lookup\_merch\_quantity\_in\_locations@{db\_lookup\_merch\_quantity\_in\_locations}!backend.h@{backend.h}}
+\doxysubsubsection{\texorpdfstring{db\_lookup\_merch\_quantity\_in\_locations()}{db\_lookup\_merch\_quantity\_in\_locations()}}
+{\footnotesize\ttfamily int db\+\_\+lookup\+\_\+merch\+\_\+quantity\+\_\+in\+\_\+locations (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmerch}{merch\+\_\+t}} $\ast$}]{merch }\end{DoxyParamCaption})}
+
+
+
+Checks the total amount of a merchandise in its locations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em merch} & The merchandise \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The sum of all quantities in a merchandise\textquotesingle{}s shelves 
+\end{DoxyReturn}
+\mbox{\Hypertarget{backend_8h_afd736a02f04fb05649bc2fc4067c1f95}\label{backend_8h_afd736a02f04fb05649bc2fc4067c1f95}} 
+\index{backend.h@{backend.h}!db\_lookup\_valid\_quantity@{db\_lookup\_valid\_quantity}}
+\index{db\_lookup\_valid\_quantity@{db\_lookup\_valid\_quantity}!backend.h@{backend.h}}
+\doxysubsubsection{\texorpdfstring{db\_lookup\_valid\_quantity()}{db\_lookup\_valid\_quantity()}}
+{\footnotesize\ttfamily int db\+\_\+lookup\+\_\+valid\+\_\+quantity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$}]{db,  }\item[{\mbox{\hyperlink{structmerch}{merch\+\_\+t}} $\ast$}]{merch,  }\item[{char $\ast$}]{merch\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Calculates the valid quantity an user can enter. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & The webstore \\
+\hline
+{\em merch} & The merchandise \\
+\hline
+{\em merch\+\_\+name} & The merchandise\textquotesingle{}s name \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The viable quantity that can be chosen 
+\end{DoxyReturn}
+\mbox{\Hypertarget{backend_8h_a5e340025c6e076154e323d542f09bdd5}\label{backend_8h_a5e340025c6e076154e323d542f09bdd5}} 
+\index{backend.h@{backend.h}!db\_merch\_count@{db\_merch\_count}}
+\index{db\_merch\_count@{db\_merch\_count}!backend.h@{backend.h}}
+\doxysubsubsection{\texorpdfstring{db\_merch\_count()}{db\_merch\_count()}}
+{\footnotesize\ttfamily int db\+\_\+merch\+\_\+count (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$}]{db }\end{DoxyParamCaption})}
+
+
+
+Checks the number of merchandises in the Webstore. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & The webstore to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of merchandises in the Webstore 
+\end{DoxyReturn}
+\mbox{\Hypertarget{backend_8h_a91902cf00589539d6afcd8c0b93878d0}\label{backend_8h_a91902cf00589539d6afcd8c0b93878d0}} 
+\index{backend.h@{backend.h}!db\_merch\_locations\_size@{db\_merch\_locations\_size}}
+\index{db\_merch\_locations\_size@{db\_merch\_locations\_size}!backend.h@{backend.h}}
+\doxysubsubsection{\texorpdfstring{db\_merch\_locations\_size()}{db\_merch\_locations\_size()}}
+{\footnotesize\ttfamily int db\+\_\+merch\+\_\+locations\+\_\+size (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmerch}{merch\+\_\+t}} $\ast$}]{merch }\end{DoxyParamCaption})}
+
+
+
+Checks how many shelves a merchandise have. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em merch} & The merchandise to lookup \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The quantity of shelves 
+\end{DoxyReturn}
+\mbox{\Hypertarget{backend_8h_aca1914416dd1c9ae9b3fe75a13f237c7}\label{backend_8h_aca1914416dd1c9ae9b3fe75a13f237c7}} 
+\index{backend.h@{backend.h}!db\_remove\_cart@{db\_remove\_cart}}
+\index{db\_remove\_cart@{db\_remove\_cart}!backend.h@{backend.h}}
+\doxysubsubsection{\texorpdfstring{db\_remove\_cart()}{db\_remove\_cart()}}
+{\footnotesize\ttfamily bool db\+\_\+remove\+\_\+cart (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$}]{db,  }\item[{int}]{id\+\_\+choice }\end{DoxyParamCaption})}
+
+
+
+Removes a cart with given id from the Webstore. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & The Webstore \\
+\hline
+{\em id\+\_\+choice} & The id of the cart to be removed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if a cart with id is removed 
+\end{DoxyReturn}
+\mbox{\Hypertarget{backend_8h_a14b25e7e4444155d620c4f0e9011eb69}\label{backend_8h_a14b25e7e4444155d620c4f0e9011eb69}} 
+\index{backend.h@{backend.h}!db\_remove\_merch@{db\_remove\_merch}}
+\index{db\_remove\_merch@{db\_remove\_merch}!backend.h@{backend.h}}
+\doxysubsubsection{\texorpdfstring{db\_remove\_merch()}{db\_remove\_merch()}}
+{\footnotesize\ttfamily void db\+\_\+remove\+\_\+merch (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwebstore}{webstore\+\_\+t}} $\ast$}]{db,  }\item[{char $\ast$}]{name }\end{DoxyParamCaption})}
+
+
+
+Removes a merchandise from everywhere. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & The webstore \\
+\hline
+{\em name} & The name of the merchandise \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{backend_8h_acc4eaefc594ed13ecd893dc85940ffd0}\label{backend_8h_acc4eaefc594ed13ecd893dc85940ffd0}} 
+\index{backend.h@{backend.h}!db\_remove\_merch\_from\_cart@{db\_remove\_merch\_from\_cart}}
+\index{db\_remove\_merch\_from\_cart@{db\_remove\_merch\_from\_cart}!backend.h@{backend.h}}
+\doxysubsubsection{\texorpdfstring{db\_remove\_merch\_from\_cart()}{db\_remove\_merch\_from\_cart()}}
+{\footnotesize\ttfamily void db\+\_\+remove\+\_\+merch\+\_\+from\+\_\+cart (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structshopping__carts}{shopping\+\_\+carts\+\_\+t}} $\ast$}]{cart,  }\item[{char $\ast$}]{name }\end{DoxyParamCaption})}
+
+
+
+Removes a merchandise from the shopping cart. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & the shopping cart \\
+\hline
+{\em name} & The name of the merchandise \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{backend_8h_a7b8e39d27b3a720a9db6c699c9ef9d4d}\label{backend_8h_a7b8e39d27b3a720a9db6c699c9ef9d4d}} 
+\index{backend.h@{backend.h}!db\_update\_merch\_quantity\_in\_cart@{db\_update\_merch\_quantity\_in\_cart}}
+\index{db\_update\_merch\_quantity\_in\_cart@{db\_update\_merch\_quantity\_in\_cart}!backend.h@{backend.h}}
+\doxysubsubsection{\texorpdfstring{db\_update\_merch\_quantity\_in\_cart()}{db\_update\_merch\_quantity\_in\_cart()}}
+{\footnotesize\ttfamily void db\+\_\+update\+\_\+merch\+\_\+quantity\+\_\+in\+\_\+cart (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structshopping__carts}{shopping\+\_\+carts\+\_\+t}} $\ast$}]{cart,  }\item[{char $\ast$}]{merch\+\_\+name,  }\item[{int}]{new\+\_\+quantity }\end{DoxyParamCaption})}
+
+
+
+Reinserts the total sum of existing and new quantity of a merchandise. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cart} & The shopping cart \\
+\hline
+{\em merch\+\_\+name} & The merchandise\textquotesingle{}s name \\
+\hline
+{\em new\+\_\+quantity} & The additional quantity \\
+\hline
+\end{DoxyParams}

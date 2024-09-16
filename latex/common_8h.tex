@@ -1,0 +1,404 @@
+\hypertarget{common_8h}{}\doxysection{common.\+h File Reference}
+\label{common_8h}\index{common.h@{common.h}}
+
+
+Common utility functions.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+union \mbox{\hyperlink{unionanswer__t}{answer\+\_\+t}}
+\item 
+union \mbox{\hyperlink{unionelem}{elem}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{common_8h_a737cfa0520068d9d52ad2023cb7fe804}\label{common_8h_a737cfa0520068d9d52ad2023cb7fe804}} 
+\#define {\bfseries empty\+\_\+elem}()~    (\mbox{\hyperlink{unionelem}{elem\+\_\+t}}) \{ .\+\_\+\+\_\+dummy = 0 \}
+\item 
+\mbox{\Hypertarget{common_8h_a6127d6dcc2af2f3baf84bd8b5aa17a8b}\label{common_8h_a6127d6dcc2af2f3baf84bd8b5aa17a8b}} 
+\#define {\bfseries bool\+\_\+elem}(x)~    (\mbox{\hyperlink{unionelem}{elem\+\_\+t}}) \{ .b = (x) \}
+\item 
+\mbox{\Hypertarget{common_8h_adb83363c7ab3edd06ac84ef11f7162ae}\label{common_8h_adb83363c7ab3edd06ac84ef11f7162ae}} 
+\#define {\bfseries int\+\_\+elem}(x)~    (\mbox{\hyperlink{unionelem}{elem\+\_\+t}}) \{ .i = (x) \}
+\item 
+\mbox{\Hypertarget{common_8h_afc6e0341d272e4261c93fcfca133defa}\label{common_8h_afc6e0341d272e4261c93fcfca133defa}} 
+\#define {\bfseries float\+\_\+elem}(x)~    (\mbox{\hyperlink{unionelem}{elem\+\_\+t}}) \{ .f = (x) \}
+\item 
+\mbox{\Hypertarget{common_8h_a46ec5bd5546d86200acde79671ff130b}\label{common_8h_a46ec5bd5546d86200acde79671ff130b}} 
+\#define {\bfseries ptr\+\_\+elem}(x)~    (\mbox{\hyperlink{unionelem}{elem\+\_\+t}}) \{ .p = (x) \}
+\item 
+\mbox{\Hypertarget{common_8h_af232f30f072e577a568f9573197d7a19}\label{common_8h_af232f30f072e577a568f9573197d7a19}} 
+\#define {\bfseries size\+\_\+elem}(x)~    (\mbox{\hyperlink{unionelem}{elem\+\_\+t}}) \{ .s = (x) \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{common_8h_a126cc34d094a5ec8ad35d0bd0efe2a5e}\label{common_8h_a126cc34d094a5ec8ad35d0bd0efe2a5e}} 
+typedef bool($\ast$ {\bfseries check\+\_\+func}) (char $\ast$)
+\item 
+\mbox{\Hypertarget{common_8h_aa7a0a834ee98c9a71e0895205fef5c1b}\label{common_8h_aa7a0a834ee98c9a71e0895205fef5c1b}} 
+typedef \mbox{\hyperlink{unionanswer__t}{answer\+\_\+t}}($\ast$ {\bfseries convert\+\_\+func}) (char $\ast$)
+\item 
+\mbox{\Hypertarget{common_8h_a833876c3875048ad46fcc53f1246835e}\label{common_8h_a833876c3875048ad46fcc53f1246835e}} 
+typedef union \mbox{\hyperlink{unionelem}{elem}} {\bfseries elem\+\_\+t}
+\item 
+\mbox{\Hypertarget{common_8h_a5fe208c4603001cf6244fb79ff379306}\label{common_8h_a5fe208c4603001cf6244fb79ff379306}} 
+typedef bool($\ast$ {\bfseries ioopm\+\_\+eq\+\_\+function}) (\mbox{\hyperlink{unionelem}{elem\+\_\+t}} a, \mbox{\hyperlink{unionelem}{elem\+\_\+t}} b)
+\begin{DoxyCompactList}\small\item\em Compares two elements and returns true if they are equal. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{common_8h_a380292d48fcdb6c65c66c2ad17993bc5}\label{common_8h_a380292d48fcdb6c65c66c2ad17993bc5}} 
+typedef bool($\ast$ {\bfseries ioopm\+\_\+predicate}) (\mbox{\hyperlink{unionelem}{elem\+\_\+t}} key, \mbox{\hyperlink{unionelem}{elem\+\_\+t}} value, void $\ast$extra)
+\item 
+\mbox{\Hypertarget{common_8h_af4a801f7298348b81d9b72724634694d}\label{common_8h_af4a801f7298348b81d9b72724634694d}} 
+typedef void($\ast$ {\bfseries ioopm\+\_\+apply\+\_\+function}) (\mbox{\hyperlink{unionelem}{elem\+\_\+t}} key, \mbox{\hyperlink{unionelem}{elem\+\_\+t}} $\ast$value, void $\ast$extra)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{common_8h_a18f59995e71d037e1fcef19531f6b840}\label{common_8h_a18f59995e71d037e1fcef19531f6b840}} 
+char $\ast$ {\bfseries strdup} (const char $\ast$)
+\item 
+\mbox{\Hypertarget{common_8h_ac1a1309d385acff44647a826db4d2f75}\label{common_8h_ac1a1309d385acff44647a826db4d2f75}} 
+int {\bfseries read\+\_\+string} (char $\ast$buf, int buf\+\_\+siz)
+\item 
+bool \mbox{\hyperlink{common_8h_aafc34a54862032ca03d41aebf56ff651}{ioopm\+\_\+compare\+\_\+bool\+\_\+elems}} (\mbox{\hyperlink{unionelem}{elem\+\_\+t}} a, \mbox{\hyperlink{unionelem}{elem\+\_\+t}} b)
+\begin{DoxyCompactList}\small\item\em compare two elem\+\_\+t\textquotesingle{}s bool value \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{common_8h_abc2700fb58f8807344d295308b10bea6}{ioopm\+\_\+compare\+\_\+int\+\_\+elems}} (\mbox{\hyperlink{unionelem}{elem\+\_\+t}} a, \mbox{\hyperlink{unionelem}{elem\+\_\+t}} b)
+\begin{DoxyCompactList}\small\item\em compare two elem\+\_\+t\textquotesingle{}s int value \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{common_8h_a38535d8587a11e6583fe4b89df942140}{ioopm\+\_\+compare\+\_\+float\+\_\+elems}} (\mbox{\hyperlink{unionelem}{elem\+\_\+t}} a, \mbox{\hyperlink{unionelem}{elem\+\_\+t}} b)
+\begin{DoxyCompactList}\small\item\em compare two elem\+\_\+t\textquotesingle{}s float value \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{common_8h_a5c3d06513e17a381bd63497c9b8b8094}{ioopm\+\_\+compare\+\_\+ptr\+\_\+elems}} (\mbox{\hyperlink{unionelem}{elem\+\_\+t}} a, \mbox{\hyperlink{unionelem}{elem\+\_\+t}} b)
+\begin{DoxyCompactList}\small\item\em compare two elem\+\_\+t\textquotesingle{}s void$\ast$ value \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{common_8h_a584fc4fce50e22079f842a6dcec245da}{ioopm\+\_\+compare\+\_\+size\+\_\+elems}} (\mbox{\hyperlink{unionelem}{elem\+\_\+t}} a, \mbox{\hyperlink{unionelem}{elem\+\_\+t}} b)
+\begin{DoxyCompactList}\small\item\em compare two elem\+\_\+t\textquotesingle{}s size\+\_\+t value \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{common_8h_a22cb30049bf4daad399e73214d51b507}{key\+\_\+equiv}} (\mbox{\hyperlink{unionelem}{elem\+\_\+t}} a, \mbox{\hyperlink{unionelem}{elem\+\_\+t}} b)
+\begin{DoxyCompactList}\small\item\em Checks if the string value of two elems are equal. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{common_8h_a17092be4cd996ea65b0f439f7b12e148}{value\+\_\+equiv}} (\mbox{\hyperlink{unionelem}{elem\+\_\+t}} a, \mbox{\hyperlink{unionelem}{elem\+\_\+t}} b)
+\begin{DoxyCompactList}\small\item\em Checks if the int value of two elems are equal. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{unionanswer__t}{answer\+\_\+t}} \mbox{\hyperlink{common_8h_acddcaccbbb72725a81b2504f3ca44649}{ask\+\_\+question}} (char $\ast$question, check\+\_\+func check, convert\+\_\+func convert)
+\begin{DoxyCompactList}\small\item\em Generic ask\+\_\+question function that prompts a question as long as check is not satisfied. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{common_8h_a968d3e8120a7d81ccac4e0ae50478446}{ask\+\_\+question\+\_\+int}} (char $\ast$question)
+\begin{DoxyCompactList}\small\item\em A function that prompts the user to input an int. \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{common_8h_a7e5974e35756c854a37cfe581384651e}{ask\+\_\+question\+\_\+string}} (char $\ast$question)
+\begin{DoxyCompactList}\small\item\em A function that prompts the user to input a string. \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{common_8h_ac57975c5ef1b8a3c4d6cb3ae0a653f3c}{ask\+\_\+question\+\_\+shelf}} (char $\ast$question)
+\begin{DoxyCompactList}\small\item\em A function that prompts the user to input a Shelf. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{common_8h_a364182cf326c6830ab087104cd1cafcd}{is\+\_\+positive}} (int num)
+\begin{DoxyCompactList}\small\item\em Checks if an user input is a positive number. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{common_8h_a016338a0ee00f9de93fb0ebae4cfa14e}{is\+\_\+valid\+\_\+number}} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Checks if an user input is a number. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{common_8h_a59018c028dff47a4eea60338e1b2fe80}{is\+\_\+valid\+\_\+string}} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Checks if an user input is a is valid. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{common_8h_aa2b78f88cd295f7224e4aa9d90db5a00}{is\+\_\+valid\+\_\+shelf}} (char $\ast$\mbox{\hyperlink{structshelf}{shelf}})
+\begin{DoxyCompactList}\small\item\em Checks if an user input is a Shelf. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Common utility functions. 
+
+\begin{DoxyAuthor}{Author}
+Erdem Garip 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+15 Nov 2022  
+\end{DoxyDate}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{common_8h_acddcaccbbb72725a81b2504f3ca44649}\label{common_8h_acddcaccbbb72725a81b2504f3ca44649}} 
+\index{common.h@{common.h}!ask\_question@{ask\_question}}
+\index{ask\_question@{ask\_question}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{ask\_question()}{ask\_question()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{unionanswer__t}{answer\+\_\+t}} ask\+\_\+question (\begin{DoxyParamCaption}\item[{char $\ast$}]{question,  }\item[{check\+\_\+func}]{check,  }\item[{convert\+\_\+func}]{convert }\end{DoxyParamCaption})}
+
+
+
+Generic ask\+\_\+question function that prompts a question as long as check is not satisfied. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em question} & The question prompted to user \\
+\hline
+{\em check} & The function that checks if the answer is valid \\
+\hline
+{\em convert} & The function that converts the answer to a data type \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A value of converted type 
+\end{DoxyReturn}
+\mbox{\Hypertarget{common_8h_a968d3e8120a7d81ccac4e0ae50478446}\label{common_8h_a968d3e8120a7d81ccac4e0ae50478446}} 
+\index{common.h@{common.h}!ask\_question\_int@{ask\_question\_int}}
+\index{ask\_question\_int@{ask\_question\_int}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{ask\_question\_int()}{ask\_question\_int()}}
+{\footnotesize\ttfamily int ask\+\_\+question\+\_\+int (\begin{DoxyParamCaption}\item[{char $\ast$}]{question }\end{DoxyParamCaption})}
+
+
+
+A function that prompts the user to input an int. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em question} & The question prompted to user \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{common_8h_ac57975c5ef1b8a3c4d6cb3ae0a653f3c}\label{common_8h_ac57975c5ef1b8a3c4d6cb3ae0a653f3c}} 
+\index{common.h@{common.h}!ask\_question\_shelf@{ask\_question\_shelf}}
+\index{ask\_question\_shelf@{ask\_question\_shelf}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{ask\_question\_shelf()}{ask\_question\_shelf()}}
+{\footnotesize\ttfamily char $\ast$ ask\+\_\+question\+\_\+shelf (\begin{DoxyParamCaption}\item[{char $\ast$}]{question }\end{DoxyParamCaption})}
+
+
+
+A function that prompts the user to input a Shelf. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em question} & The question prompted to user \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A shelf 
+\end{DoxyReturn}
+\mbox{\Hypertarget{common_8h_a7e5974e35756c854a37cfe581384651e}\label{common_8h_a7e5974e35756c854a37cfe581384651e}} 
+\index{common.h@{common.h}!ask\_question\_string@{ask\_question\_string}}
+\index{ask\_question\_string@{ask\_question\_string}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{ask\_question\_string()}{ask\_question\_string()}}
+{\footnotesize\ttfamily char $\ast$ ask\+\_\+question\+\_\+string (\begin{DoxyParamCaption}\item[{char $\ast$}]{question }\end{DoxyParamCaption})}
+
+
+
+A function that prompts the user to input a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em question} & The question prompted to user \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A string 
+\end{DoxyReturn}
+\mbox{\Hypertarget{common_8h_aafc34a54862032ca03d41aebf56ff651}\label{common_8h_aafc34a54862032ca03d41aebf56ff651}} 
+\index{common.h@{common.h}!ioopm\_compare\_bool\_elems@{ioopm\_compare\_bool\_elems}}
+\index{ioopm\_compare\_bool\_elems@{ioopm\_compare\_bool\_elems}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{ioopm\_compare\_bool\_elems()}{ioopm\_compare\_bool\_elems()}}
+{\footnotesize\ttfamily bool ioopm\+\_\+compare\+\_\+bool\+\_\+elems (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{unionelem}{elem\+\_\+t}}}]{a,  }\item[{\mbox{\hyperlink{unionelem}{elem\+\_\+t}}}]{b }\end{DoxyParamCaption})}
+
+
+
+compare two elem\+\_\+t\textquotesingle{}s bool value 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & the first elem\+\_\+t \\
+\hline
+{\em b} & the second elem\+\_\+t \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the bools of a and b are equal 
+\end{DoxyReturn}
+\mbox{\Hypertarget{common_8h_a38535d8587a11e6583fe4b89df942140}\label{common_8h_a38535d8587a11e6583fe4b89df942140}} 
+\index{common.h@{common.h}!ioopm\_compare\_float\_elems@{ioopm\_compare\_float\_elems}}
+\index{ioopm\_compare\_float\_elems@{ioopm\_compare\_float\_elems}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{ioopm\_compare\_float\_elems()}{ioopm\_compare\_float\_elems()}}
+{\footnotesize\ttfamily bool ioopm\+\_\+compare\+\_\+float\+\_\+elems (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{unionelem}{elem\+\_\+t}}}]{a,  }\item[{\mbox{\hyperlink{unionelem}{elem\+\_\+t}}}]{b }\end{DoxyParamCaption})}
+
+
+
+compare two elem\+\_\+t\textquotesingle{}s float value 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & the first elem\+\_\+t \\
+\hline
+{\em b} & the second elem\+\_\+t \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the floats of a and b are equal 
+\end{DoxyReturn}
+\mbox{\Hypertarget{common_8h_abc2700fb58f8807344d295308b10bea6}\label{common_8h_abc2700fb58f8807344d295308b10bea6}} 
+\index{common.h@{common.h}!ioopm\_compare\_int\_elems@{ioopm\_compare\_int\_elems}}
+\index{ioopm\_compare\_int\_elems@{ioopm\_compare\_int\_elems}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{ioopm\_compare\_int\_elems()}{ioopm\_compare\_int\_elems()}}
+{\footnotesize\ttfamily bool ioopm\+\_\+compare\+\_\+int\+\_\+elems (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{unionelem}{elem\+\_\+t}}}]{a,  }\item[{\mbox{\hyperlink{unionelem}{elem\+\_\+t}}}]{b }\end{DoxyParamCaption})}
+
+
+
+compare two elem\+\_\+t\textquotesingle{}s int value 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & the first elem\+\_\+t \\
+\hline
+{\em b} & the second elem\+\_\+t \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the ints of a and b are equal 
+\end{DoxyReturn}
+\mbox{\Hypertarget{common_8h_a5c3d06513e17a381bd63497c9b8b8094}\label{common_8h_a5c3d06513e17a381bd63497c9b8b8094}} 
+\index{common.h@{common.h}!ioopm\_compare\_ptr\_elems@{ioopm\_compare\_ptr\_elems}}
+\index{ioopm\_compare\_ptr\_elems@{ioopm\_compare\_ptr\_elems}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{ioopm\_compare\_ptr\_elems()}{ioopm\_compare\_ptr\_elems()}}
+{\footnotesize\ttfamily bool ioopm\+\_\+compare\+\_\+ptr\+\_\+elems (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{unionelem}{elem\+\_\+t}}}]{a,  }\item[{\mbox{\hyperlink{unionelem}{elem\+\_\+t}}}]{b }\end{DoxyParamCaption})}
+
+
+
+compare two elem\+\_\+t\textquotesingle{}s void$\ast$ value 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & the first elem\+\_\+t \\
+\hline
+{\em b} & the second elem\+\_\+t \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the pointers of a and b are equal 
+\end{DoxyReturn}
+\mbox{\Hypertarget{common_8h_a584fc4fce50e22079f842a6dcec245da}\label{common_8h_a584fc4fce50e22079f842a6dcec245da}} 
+\index{common.h@{common.h}!ioopm\_compare\_size\_elems@{ioopm\_compare\_size\_elems}}
+\index{ioopm\_compare\_size\_elems@{ioopm\_compare\_size\_elems}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{ioopm\_compare\_size\_elems()}{ioopm\_compare\_size\_elems()}}
+{\footnotesize\ttfamily bool ioopm\+\_\+compare\+\_\+size\+\_\+elems (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{unionelem}{elem\+\_\+t}}}]{a,  }\item[{\mbox{\hyperlink{unionelem}{elem\+\_\+t}}}]{b }\end{DoxyParamCaption})}
+
+
+
+compare two elem\+\_\+t\textquotesingle{}s size\+\_\+t value 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & the first elem\+\_\+t \\
+\hline
+{\em b} & the second elem\+\_\+t \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the sizes of a and b are equal 
+\end{DoxyReturn}
+\mbox{\Hypertarget{common_8h_a364182cf326c6830ab087104cd1cafcd}\label{common_8h_a364182cf326c6830ab087104cd1cafcd}} 
+\index{common.h@{common.h}!is\_positive@{is\_positive}}
+\index{is\_positive@{is\_positive}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{is\_positive()}{is\_positive()}}
+{\footnotesize\ttfamily bool is\+\_\+positive (\begin{DoxyParamCaption}\item[{int}]{num }\end{DoxyParamCaption})}
+
+
+
+Checks if an user input is a positive number. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & the number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the number is positive 
+\end{DoxyReturn}
+\mbox{\Hypertarget{common_8h_a016338a0ee00f9de93fb0ebae4cfa14e}\label{common_8h_a016338a0ee00f9de93fb0ebae4cfa14e}} 
+\index{common.h@{common.h}!is\_valid\_number@{is\_valid\_number}}
+\index{is\_valid\_number@{is\_valid\_number}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{is\_valid\_number()}{is\_valid\_number()}}
+{\footnotesize\ttfamily bool is\+\_\+valid\+\_\+number (\begin{DoxyParamCaption}\item[{char $\ast$}]{str }\end{DoxyParamCaption})}
+
+
+
+Checks if an user input is a number. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The raw string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the processed string is an int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{common_8h_aa2b78f88cd295f7224e4aa9d90db5a00}\label{common_8h_aa2b78f88cd295f7224e4aa9d90db5a00}} 
+\index{common.h@{common.h}!is\_valid\_shelf@{is\_valid\_shelf}}
+\index{is\_valid\_shelf@{is\_valid\_shelf}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{is\_valid\_shelf()}{is\_valid\_shelf()}}
+{\footnotesize\ttfamily bool is\+\_\+valid\+\_\+shelf (\begin{DoxyParamCaption}\item[{char $\ast$}]{shelf }\end{DoxyParamCaption})}
+
+
+
+Checks if an user input is a Shelf. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em shelf} & The raw string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the processed shelf is of size 3 where first element is alpha numeric and latter two are numbers 
+\end{DoxyReturn}
+\mbox{\Hypertarget{common_8h_a59018c028dff47a4eea60338e1b2fe80}\label{common_8h_a59018c028dff47a4eea60338e1b2fe80}} 
+\index{common.h@{common.h}!is\_valid\_string@{is\_valid\_string}}
+\index{is\_valid\_string@{is\_valid\_string}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{is\_valid\_string()}{is\_valid\_string()}}
+{\footnotesize\ttfamily bool is\+\_\+valid\+\_\+string (\begin{DoxyParamCaption}\item[{char $\ast$}]{str }\end{DoxyParamCaption})}
+
+
+
+Checks if an user input is a is valid. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The raw string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the processed string does not entirely consist of whitespace or new line character 
+\end{DoxyReturn}
+\mbox{\Hypertarget{common_8h_a22cb30049bf4daad399e73214d51b507}\label{common_8h_a22cb30049bf4daad399e73214d51b507}} 
+\index{common.h@{common.h}!key\_equiv@{key\_equiv}}
+\index{key\_equiv@{key\_equiv}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{key\_equiv()}{key\_equiv()}}
+{\footnotesize\ttfamily bool key\+\_\+equiv (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{unionelem}{elem\+\_\+t}}}]{a,  }\item[{\mbox{\hyperlink{unionelem}{elem\+\_\+t}}}]{b }\end{DoxyParamCaption})}
+
+
+
+Checks if the string value of two elems are equal. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & the first elem\+\_\+t \\
+\hline
+{\em b} & the second elem\+\_\+t \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the string values of a and b are equal 
+\end{DoxyReturn}
+\mbox{\Hypertarget{common_8h_a17092be4cd996ea65b0f439f7b12e148}\label{common_8h_a17092be4cd996ea65b0f439f7b12e148}} 
+\index{common.h@{common.h}!value\_equiv@{value\_equiv}}
+\index{value\_equiv@{value\_equiv}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{value\_equiv()}{value\_equiv()}}
+{\footnotesize\ttfamily bool value\+\_\+equiv (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{unionelem}{elem\+\_\+t}}}]{a,  }\item[{\mbox{\hyperlink{unionelem}{elem\+\_\+t}}}]{b }\end{DoxyParamCaption})}
+
+
+
+Checks if the int value of two elems are equal. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & the first elem\+\_\+t \\
+\hline
+{\em b} & the second elem\+\_\+t \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the ints of a and b are equal 
+\end{DoxyReturn}
