@@ -28,9 +28,12 @@ webstore_t *db_create_webstore(void);
 /// @param name the merchandises name
 /// @param desc the description of the merchandise
 /// @param price the price of the merchandise
+/// @param brand the brand of the merchandise
+/// @param category the category the item belongs to
+/// @param color the color(s) of the merchandise
 /// @pre The price is positive, this property is checked and ensured in frontend
 /// @return A merchandise
-merch_t *db_create_merch(char *name, char *desc, int price);
+merch_t *db_create_merch(char *name, char *desc, int price, char *brand, char *category, char *color);
 
 /// @brief Allocates memory for a shelf
 /// @param shelf_name the shelfs name
@@ -91,10 +94,13 @@ void db_remove_merch_from_cart(shopping_carts_t *cart, char *name);
 /// @param db the Webstore
 /// @param current_merch currently existing merch
 /// @param new_name the new name of the current merchandise
+/// @param new_brand the new brand of the current merchandise
+/// @param new_category the new category of the current merchandise
+/// @param new_color the new color of the current merchandise
 /// @param new_desc the new description of the current merchandise
 /// @param new_price the new price of the current merchandise
 /// @return Returns the edited merchandise
-merch_t *db_edit_merch(webstore_t *db, merch_t *current_merch, char *new_name, char *new_desc, int new_price);
+merch_t *db_edit_merch(webstore_t *db, merch_t *current_merch, char *new_name, char *new_brand, char *new_category, char *new_color, char *new_desc, int new_price);
 
 /// @brief  Gets a merchandise from its name
 /// @param db The webstore

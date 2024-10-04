@@ -47,6 +47,9 @@ void ui_create_merch(webstore_t *db)
   char *name = ask_question_string("State the name of the merchandise: ");
   char *desc = ask_question_string("State the description of the merchandise:");
   int price = ask_question_int("State the price of the merchandise: ");
+  char *brand = ask_question_string("State the brand of the merchandise: ");
+  char *category = ask_question_string("State the category of the merchandise: ");
+  char *color = ask_question_string("State the color of the merchandise: ");
 
   if (!is_positive(price))
   {
@@ -58,7 +61,7 @@ void ui_create_merch(webstore_t *db)
   }
   else
   {
-    merch_t *merch = db_create_merch(name, desc, price);
+    merch_t *merch = db_create_merch(name, desc, price, brand, category, color);
     db_add_merch(db, merch);
     printf("--- The merchandise has been successfully added ---\n");
   }
@@ -104,6 +107,9 @@ void ui_edit_merch(webstore_t *db)
     char *new_name = ask_question_string("State the new name of the merchandise: ");
     char *new_desc = ask_question_string("State the new description of the merchandise: ");
     int new_price = ask_question_int("State the new price of the merchandise: ");
+    char *new_brand = ask_question_string("State the new brand of the merchandise: ");
+    char *new_category = ask_question_string("State the new category of the merchandise: ");
+    char *new_color = ask_question_string("State the new color of the merchandise: ");
 
     bool has_new_name = db_has_key(db, new_name);
 
@@ -114,7 +120,7 @@ void ui_edit_merch(webstore_t *db)
     else
     {
       merch_t *current_merch = db_get_merch(db, current_name);
-      merch_t *edited_merch = db_edit_merch(db, current_merch, new_name, new_desc, new_price);
+      merch_t *edited_merch = db_edit_merch(db, current_merch, new_name, new_brand, new_category, new_color, new_desc, new_price);
 
       db_remove_merch(db, current_name);
       db_add_merch(db, edited_merch);

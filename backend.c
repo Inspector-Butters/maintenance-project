@@ -8,6 +8,9 @@ struct merch
   char *desc;
   int price;
   ioopm_list_t *locations;
+  char *category;
+  char *color;
+  char *brand;
 };
 
 struct webstore
@@ -53,7 +56,7 @@ webstore_t *db_create_webstore(void)
   return db;
 }
 
-merch_t *db_create_merch(char *name, char *desc, int price)
+merch_t *db_create_merch(char *name, char *desc, int price, char *brand, char *category, char *color)
 {
   merch_t *new_merch = calloc(1, sizeof(merch_t));
 
@@ -61,6 +64,9 @@ merch_t *db_create_merch(char *name, char *desc, int price)
   new_merch->desc = desc;
   new_merch->price = price;
   new_merch->locations = ioopm_linked_list_create(ioopm_compare_ptr_elems);
+  new_merch->category = category;
+  new_merch->color = color; 
+  new_merch->brand = brand;
 
   return new_merch;
 }
@@ -88,6 +94,9 @@ void db_destroy_a_merch(merch_t *merch)
 {
   free(merch->name);
   free(merch->desc);
+  free(merch->brand);
+  free(merch->category);
+  free(merch->color);
 
   int size = (int)ioopm_linked_list_size(merch->locations);
 
@@ -142,8 +151,11 @@ void db_list_a_merch(merch_t *merch)
 {
   printf("\nMerchandise name: %s\n"
          "Merchandise description: %s\n"
-         "Merchandise price: %d\n\n",
-         merch->name, merch->desc, merch->price);
+         "Merchandise price: %d\n"
+         "Merchandise brand: %s\n"
+         "Merchandise category: %s\n"
+         "Merchandise color(s): %s\n\n",
+         merch->name, merch->desc, merch->price, merch->brand, merch->category, merch->color);
 }
 
 merch_t *db_get_merch_from_name(webstore_t *db, char *name)
@@ -180,12 +192,16 @@ void db_remove_merch_from_cart(shopping_carts_t *cart, char *name)
   ptr.i = 0;
 }
 
-merch_t *db_edit_merch(webstore_t *db, merch_t *current_merch, char *new_name, char *new_desc, int new_price)
+merch_t *
+db_edit_merch(webstore_t *db, merch_t *current_merch, char *new_name, char *new_brand, char *new_category, char *new_color, char *new_desc, int new_price)
 {
   merch_t *edited_merch = calloc(1, sizeof(merch_t));
 
   edited_merch->name = new_name;
   edited_merch->desc = new_desc;
+  edited_merch->brand = new_brand;
+  edited_merch->category = new_category;
+  edited_merch->color = new_color;
   edited_merch->price = new_price;
   edited_merch->locations = ioopm_linked_list_create(ioopm_compare_ptr_elems);
 
