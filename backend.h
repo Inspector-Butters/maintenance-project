@@ -1,21 +1,19 @@
 #include "common.h"
-#include "linked_list.h"
 #include "hash_table.h"
 #include "iterator.h"
+#include "linked_list.h"
 
 typedef struct merch merch_t;
 typedef struct shelf shelf_t;
 typedef struct webstore webstore_t;
 typedef struct shopping_carts shopping_carts_t;
 
-
-
 /**
  * @file backend.h
  * @author Erdem Garip
  * @date 15 Nov 2022
  * @brief Backend of the Warehouse application
- *  
+ *
  */
 
 int string_hash(elem_t e);
@@ -30,7 +28,7 @@ webstore_t *db_create_webstore(void);
 /// @param price the price of the merchandise
 /// @pre The price is positive, this property is checked and ensured in frontend
 /// @return A merchandise
-merch_t *db_create_merch(char *name, char *desc, int price);
+merch_t *db_create_merch(char *name, char *desc, int price, char *category);
 
 /// @brief Allocates memory for a shelf
 /// @param shelf_name the shelfs name
@@ -94,7 +92,8 @@ void db_remove_merch_from_cart(shopping_carts_t *cart, char *name);
 /// @param new_desc the new description of the current merchandise
 /// @param new_price the new price of the current merchandise
 /// @return Returns the edited merchandise
-merch_t *db_edit_merch(webstore_t *db, merch_t *current_merch, char *new_name, char *new_desc, int new_price);
+merch_t *db_edit_merch(webstore_t *db, merch_t *current_merch, char *new_name,
+                       char *new_desc, int new_price, char *category);
 
 /// @brief  Gets a merchandise from its name
 /// @param db The webstore
@@ -112,7 +111,8 @@ int db_merch_locations_size(merch_t *merch);
 /// @param merch The merchandise to display
 void db_display_stock(merch_t *merch);
 
-/// @brief Iterates through the Webstore to check if a location with shelf_name exists
+/// @brief Iterates through the Webstore to check if a location with shelf_name
+/// exists
 /// @param db The Webstore
 /// @param shelf_name The new shelf name
 /// @return True if there is a location(shelf) with the same name as shelf_name
@@ -122,14 +122,16 @@ bool db_location_name_exists_in_webstore(webstore_t *db, char *shelf_name);
 /// @param merch The merchandise
 /// @param shelf_name The name of the new location
 /// @param new_quantity The quantity of the new location
-void db_add_location_to_merch(merch_t *merch, char *shelf_name, int new_quantity);
+void db_add_location_to_merch(merch_t *merch, char *shelf_name,
+                              int new_quantity);
 
 /// @brief Attempts to edit and existing location(shelf) of a merchandise
 /// @param merch The merchandise
 /// @param shelf_name The location's name
 /// @param new_quantity The new quantity of the location
 /// @return True if a location with given name exists
-bool db_edit_location_quantity(merch_t *merch, char *shelf_name, int new_quantity);
+bool db_edit_location_quantity(merch_t *merch, char *shelf_name,
+                               int new_quantity);
 
 /// @brief Adds a new shopping cart to the Webstore
 /// @param db The webstore
@@ -178,13 +180,15 @@ bool db_cart_has_key(shopping_carts_t *cart, char *merch_name);
 /// @param cart The shopping cart
 /// @param merch_name The merchandise's name
 /// @param new_quantity The additional quantity
-void db_update_merch_quantity_in_cart(shopping_carts_t *cart, char *merch_name, int new_quantity);
+void db_update_merch_quantity_in_cart(shopping_carts_t *cart, char *merch_name,
+                                      int new_quantity);
 
 /// @brief Adds the given quantity of a merchandise in the shopping cart
 /// @param cart The shopping cart
 /// @param merch_name The merchandise's name
 /// @param new_quantity The quantity of the merchandise
-void db_add_merch_to_cart(shopping_carts_t *cart, char *merch_name, int new_quantity);
+void db_add_merch_to_cart(shopping_carts_t *cart, char *merch_name,
+                          int new_quantity);
 
 /// @brief Calculates the cost of all merchandises in a shopping cart
 /// @param db The database
@@ -192,42 +196,48 @@ void db_add_merch_to_cart(shopping_carts_t *cart, char *merch_name, int new_quan
 /// @return The total price of all merchandises in a cart
 int db_calculate_cost(webstore_t *db, shopping_carts_t *cart);
 
-/// @brief Removes all of the merchandises and their amounths from the Webstore's merchandise's locations.
+/// @brief Removes all of the merchandises and their amounths from the
+/// Webstore's merchandise's locations.
 /// @param db The Webstore
 /// @param cart The Shopping cart
 void db_checkout(webstore_t *db, shopping_carts_t *cart);
 
-/// @brief Decreases the locations's(shelves) quantities untill given quantity is zero
+/// @brief Decreases the locations's(shelves) quantities untill given quantity
+/// is zero
 /// @param merch The merchandise
 /// @param quantity The amount of quantity to decrease in locations
 void db_decrease_locations_quantities(merch_t *merch, int quantity);
 
-/// @brief Destroys the webstore frees all the memory allocated by the datastructures
+/// @brief Destroys the webstore frees all the memory allocated by the
+/// datastructures
 /// @param db The webstore to destroy
 void db_destroy_webstore(webstore_t *db);
 
-/// @brief Destroys the merchandises in the database and frees the memories allocated by them
-/// @param db The hashtable where key-value pairs are key=>merch_name, value=>merch
+/// @brief Destroys the merchandises in the database and frees the memories
+/// allocated by them
+/// @param db The hashtable where key-value pairs are key=>merch_name,
+/// value=>merch
 void db_destroy_merchs(ioopm_hash_table_t *merchs);
 
-/// @brief Destroys the shopping carts in the database and frees the memories allocated by them
-/// @param db Key-value pairs are key=>cart_id, value=>shopping_cart. The shopping_cart itslef is key=>name, value=>quantity
+/// @brief Destroys the shopping carts in the database and frees the memories
+/// allocated by them
+/// @param db Key-value pairs are key=>cart_id, value=>shopping_cart. The
+/// shopping_cart itslef is key=>name, value=>quantity
 void db_destroy_carts(ioopm_hash_table_t *carts);
 
-/// @brief Destroys a cart and frees all the memory associated with it. It does not destroy the merchandises.
+/// @brief Destroys a cart and frees all the memory associated with it. It does
+/// not destroy the merchandises.
 /// @param db The shopping cart struct
 void db_destroy_a_cart(shopping_carts_t *cart);
 
-
 /// @brief Calculates the valid quantity an user can enter
 /// @param db The webstore
-/// @param merch The merchandise 
+/// @param merch The merchandise
 /// @param merch_name The merchandise's name
 /// @return The viable quantity that can be chosen
 int db_lookup_valid_quantity(webstore_t *db, merch_t *merch, char *merch_name);
 
-
-//### functions for testing ###
+// ### functions for testing ###
 
 char *db_get_name(merch_t *merch);
 char *db_get_desc(merch_t *merch);
