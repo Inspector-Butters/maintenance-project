@@ -1,12 +1,12 @@
-#include "backend.h"
-#include "common.h"
+#include "../common/common.h"
+#include "../backend/backend.h"
 
 /**
  * @file frontend.h
  * @author Erdem Garip
  * @date 15 Nov 2022
  * @brief Frontend of the Warehouse application
- *  
+ *
  */
 
 /// @brief Adds a new merchandise to the Webstore
@@ -54,7 +54,6 @@ void ui_add_to_cart(webstore_t *db);
 /// @brief Removes a merchandise from a shopping cart
 /// @param db The webstore
 void ui_remove_from_cart(webstore_t *db);
-
 
 //
 //

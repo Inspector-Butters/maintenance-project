@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <errno.h>
-#include "common.h"
+#include "../common/common.h"
 #include "hash_table.h"
 #include "linked_list.h"
 #include "iterator.h"

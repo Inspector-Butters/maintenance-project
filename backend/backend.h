@@ -1,7 +1,7 @@
-#include "common.h"
-#include "linked_list.h"
-#include "hash_table.h"
-#include "iterator.h"
+#include "../common/common.h"
+#include "../structs/linked_list.h"
+#include "../structs/hash_table.h"
+#include "../structs/iterator.h"
 
 typedef struct merch merch_t;
 typedef struct shelf shelf_t;

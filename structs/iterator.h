@@ -1,7 +1,8 @@
 #pragma once
 
 #include <stdbool.h>
-#include "common.h"
+
+#include "../common/common.h"
 #include "linked_list.h"
 
 /**
