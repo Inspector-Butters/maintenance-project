@@ -18,6 +18,12 @@ typedef struct shopping_carts shopping_carts_t;
 
 int string_hash(elem_t e);
 
+/// @brief
+/// @return
+void db_list_all_categories_in_webstore(webstore_t *db);
+
+
+
 /// @brief Creates a Webstore
 /// @return A webstore consisting of two hastables db->merches and db->carts
 webstore_t *db_create_webstore(void);
