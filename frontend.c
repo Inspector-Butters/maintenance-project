@@ -1,5 +1,7 @@
 #include "frontend.h"
 #include "common.h"
+#include <stdio.h>
+#include <string.h>
 
 // ### Internal ###
 static void print_menu(void);
@@ -22,7 +24,6 @@ static void print_menu(void) {
            "11. Calculate cost\n"
            "12. Checkout\n"
            "13. Quit\n"
-           "14. List categories\n"
            "***\n");
 }
 
@@ -41,19 +42,39 @@ static int menu_choice(void) {
 
 // ### Internal ###
 
-void ui_list_catagories(webstore_t *db) {
+void ui_list_catagories(webstore_t *db, char **category) {
 
-    db_list_all_categories_in_webstore(db);
+    if (db_number_of_categories_in_webstore(db) == 0) {
+        *category = ask_question_string("State the category of the merchandise: ");
+    }
 
-    printf("Listade alla Categories wallah\n");
+    else {
+
+        db_list_all_categories_in_webstore(db);
+
+        char *choice =
+            ask_question_string("Would you like to add a new category? (y/n): ");
+
+        if (strncmp(choice, "y", 1) == 0) {
+            *category =
+                ask_question_string("State the category of the merchandise: ");
+        }
+
+        else {
+            int category_choice = ask_question_int("State the category number: ");
+            *category = db_get_category_from_webstore(db, category_choice - 1);
+        }
+    }
 }
 
 void ui_create_merch(webstore_t *db) {
     char *name = ask_question_string("State the name of the merchandise: ");
     char *desc = ask_question_string("State the description of the merchandise:");
     int price = ask_question_int("State the price of the merchandise: ");
-    char *category =
-        ask_question_string("State the category of the merhandise: ");
+
+    char *category;
+
+    ui_list_catagories(db, &category);
 
     if (!is_positive(price)) {
         printf("The price of the merchandise must be positive. Try again from the "
@@ -115,8 +136,8 @@ void ui_edit_merch(webstore_t *db) {
                    current_name, new_name);
         } else {
             merch_t *current_merch = db_get_merch(db, current_name);
-            merch_t *edited_merch =
-                db_edit_merch(db, current_merch, new_name, new_desc, new_price, new_category);
+            merch_t *edited_merch = db_edit_merch(db, current_merch, new_name,
+                                                  new_desc, new_price, new_category);
 
             db_remove_merch(db, current_name);
             db_add_merch(db, edited_merch);
@@ -424,8 +445,6 @@ static void ui_event_loop(webstore_t *db) {
             ui_checkout(db);
         } else if (choice == 13) {
             ui_destroy_webstore(db);
-        } else if (choice == 14) {
-            ui_list_catagories(db);
         }
     }
 }

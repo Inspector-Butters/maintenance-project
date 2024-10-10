@@ -22,6 +22,16 @@ int string_hash(elem_t e);
 /// @return
 void db_list_all_categories_in_webstore(webstore_t *db);
 
+/// @brief
+/// @return
+int db_number_of_categories_in_webstore(webstore_t *db);
+
+/// @breif
+/// @return
+char *db_get_category_from_webstore(webstore_t *db, int category_choice);
+
+
+
 
 
 /// @brief Creates a Webstore
