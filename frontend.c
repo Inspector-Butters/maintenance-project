@@ -52,8 +52,15 @@ void ui_list_catagories(webstore_t *db, char **category) {
 
         db_list_all_categories_in_webstore(db);
 
-        char *choice =
-            ask_question_string("Would you like to add a new category? (y/n): ");
+        char *choice;
+
+        do {
+
+            choice =
+                ask_question_string("Would you like to add a new category? (y/n): ");
+
+        } while (!(strncmp(choice, "y", 1) == 0) &&
+                 !(strncmp(choice, "n", 1) == 0));
 
         if (strncmp(choice, "y", 1) == 0) {
             *category =
@@ -61,7 +68,17 @@ void ui_list_catagories(webstore_t *db, char **category) {
         }
 
         else {
-            int category_choice = ask_question_int("State the category number: ");
+
+            int category_choice;
+
+            do {
+                category_choice = ask_question_int("State the category number: ");
+
+                if (category_choice > db_number_of_categories_in_webstore(db)) {
+                    printf("Invalid category!\n\n");
+                }
+
+            } while (category_choice > db_number_of_categories_in_webstore(db));
             *category = db_get_category_from_webstore(db, category_choice - 1);
         }
     }
