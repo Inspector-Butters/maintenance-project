@@ -115,13 +115,18 @@ webstore_t *db_create_webstore(void) {
     return db;
 }
 
-merch_t *db_create_merch(char *name, char *desc, int price, char *category) {
+merch_t *db_create_merch(char *name, char *desc, int price, char *category, char *brand, char *color) {
     merch_t *new_merch = calloc(1, sizeof(merch_t));
 
     new_merch->name = name;
     new_merch->desc = desc;
     new_merch->price = price;
     new_merch->category = category;
+
+    new_merch->brand = brand;
+    new_merch->color = color;
+
+
     new_merch->locations = ioopm_linked_list_create(ioopm_compare_ptr_elems);
 
     return new_merch;
