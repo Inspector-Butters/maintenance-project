@@ -10,8 +10,9 @@ struct merch {
     char *desc;
     int price;
     ioopm_list_t *locations;
-
     char *category;
+    char *color;
+    char *brand;
 };
 
 struct webstore {
@@ -196,8 +197,10 @@ void db_list_a_merch(merch_t *merch) {
     printf("\nMerchandise name: %s\n"
            "Merchandise description: %s\n"
            "Merchandise price: %d\n"
-           "Merchandise category: %s\n\n",
-           merch->name, merch->desc, merch->price, merch->category);
+           "Merchandise brand: %s\n"
+           "Merchandise category: %s\n"
+           "Merchandise color(s): %s\n\n",
+           merch->name, merch->desc, merch->price, merch->brand, merch->category, merch->color);
 }
 
 merch_t *db_get_merch_from_name(webstore_t *db, char *name) {
@@ -230,15 +233,17 @@ void db_remove_merch_from_cart(shopping_carts_t *cart, char *name) {
     ptr.i = 0;
 }
 
-merch_t *db_edit_merch(webstore_t *db, merch_t *current_merch, char *new_name,
-                       char *new_desc, int new_price, char *new_category) {
+merch_t *
+db_edit_merch(webstore_t *db, merch_t *current_merch, char *new_name, char *new_brand, char *new_category, char *new_color, char *new_desc, int new_price) {
     merch_t *edited_merch = calloc(1, sizeof(merch_t));
 
     edited_merch->name = new_name;
     edited_merch->desc = new_desc;
+    edited_merch->brand = new_brand;
+    edited_merch->category = new_category;
+    edited_merch->color = new_color;
     edited_merch->price = new_price;
     edited_merch->locations = ioopm_linked_list_create(ioopm_compare_ptr_elems);
-    edited_merch->category = new_category;
 
     int size = (int)ioopm_linked_list_size(current_merch->locations);
 
@@ -269,8 +274,7 @@ void db_display_stock(merch_t *merch) {
     } else {
         for (int i = 0; i < size; i++) {
             shelf_t *shelf = ioopm_linked_list_get(merch->locations, i).p;
-            printf("Shelf name: %s | Shelf quantity: %d \n", shelf->name,
-                   shelf->quantity);
+            printf("Shelf name: %s | Shelf quantity: %d \n", shelf->name, shelf->quantity);
         }
     }
 }
@@ -296,14 +300,12 @@ bool db_location_name_exists_in_webstore(webstore_t *db, char *shelf_name) {
     return false;
 }
 
-void db_add_location_to_merch(merch_t *merch, char *shelf_name,
-                              int new_quantity) {
+void db_add_location_to_merch(merch_t *merch, char *shelf_name, int new_quantity) {
     shelf_t *shelf = db_create_shelf(shelf_name, new_quantity);
     ioopm_linked_list_append(merch->locations, ptr_elem(shelf));
 }
 
-bool db_edit_location_quantity(merch_t *merch, char *shelf_name,
-                               int new_quantity) {
+bool db_edit_location_quantity(merch_t *merch, char *shelf_name, int new_quantity) {
     int size = (int)ioopm_linked_list_size(merch->locations);
 
     for (int i = 0; i < size; i++) {
@@ -329,8 +331,7 @@ int db_carts_size(webstore_t *db) {
 
 bool db_remove_cart(webstore_t *db, int id_choice) {
     elem_t cart_ptr;
-    bool result =
-        ioopm_hash_table_remove(db->carts, int_elem(id_choice), &cart_ptr);
+    bool result = ioopm_hash_table_remove(db->carts, int_elem(id_choice), &cart_ptr);
 
     if (result) {
         db_destroy_a_cart(cart_ptr.p);
@@ -354,8 +355,7 @@ void db_display_cart_ids(webstore_t *db) {
 
 shopping_carts_t *db_get_cart_from_id(webstore_t *db, int id_choice) {
     elem_t cart_ptr;
-    bool lookup =
-        ioopm_hash_table_lookup(db->carts, int_elem(id_choice), &cart_ptr);
+    bool lookup = ioopm_hash_table_lookup(db->carts, int_elem(id_choice), &cart_ptr);
 
     if (lookup) {
         return cart_ptr.p;
@@ -383,37 +383,31 @@ int db_lookup_valid_quantity(webstore_t *db, merch_t *merch, char *merch_name) {
 }
 
 bool db_cart_has_key(shopping_carts_t *cart, char *merch_name) {
-    // elem_t quantity_ptr;
-    // return ioopm_hash_table_lookup(cart->shopping_cart, ptr_elem(merch_name),
-    // &quantity_ptr);
+    //elem_t quantity_ptr;
+    //return ioopm_hash_table_lookup(cart->shopping_cart, ptr_elem(merch_name), &quantity_ptr);
 
     ioopm_list_t *names = ioopm_hash_table_keys(cart->shopping_cart);
     int size = (int)ioopm_linked_list_size(names);
 
-    for (int i = 0; i < size; i++) {
-        if (strcmp(merch_name, ioopm_linked_list_get(names, i).str) == 0) {
+    for(int i = 0; i < size; i++) {
+        if(strcmp(merch_name, ioopm_linked_list_get(names, i).str) == 0) {
             return true;
         }
     }
     return false;
 }
 
-void db_update_merch_quantity_in_cart(shopping_carts_t *cart, char *merch_name,
-                                      int new_quantity) {
+void db_update_merch_quantity_in_cart(shopping_carts_t *cart, char *merch_name, int new_quantity) {
     elem_t quantity_ptr;
-    ioopm_hash_table_remove(cart->shopping_cart, ptr_elem(merch_name),
-                            &quantity_ptr);
+    ioopm_hash_table_remove(cart->shopping_cart, ptr_elem(merch_name), &quantity_ptr);
 
     int sum_quantity = quantity_ptr.i + new_quantity;
 
-    ioopm_hash_table_insert(cart->shopping_cart, ptr_elem(merch_name),
-                            int_elem(sum_quantity));
+    ioopm_hash_table_insert(cart->shopping_cart, ptr_elem(merch_name), int_elem(sum_quantity));
 }
 
-void db_add_merch_to_cart(shopping_carts_t *cart, char *merch_name,
-                          int new_quantity) {
-    ioopm_hash_table_insert(cart->shopping_cart, ptr_elem(merch_name),
-                            int_elem(new_quantity));
+void db_add_merch_to_cart(shopping_carts_t *cart, char *merch_name, int new_quantity) {
+    ioopm_hash_table_insert(cart->shopping_cart, ptr_elem(merch_name), int_elem(new_quantity));
 }
 
 int db_lookup_merch_quantity_in_carts2(webstore_t *db, char *merch_name) {
@@ -424,8 +418,7 @@ int db_lookup_merch_quantity_in_carts2(webstore_t *db, char *merch_name) {
     for (int i = 0; i < size; i++) {
         shopping_carts_t *cart = ioopm_linked_list_get(carts_list, i).p;
         elem_t quantity_ptr;
-        bool lookup = ioopm_hash_table_lookup(cart->shopping_cart,
-                                              ptr_elem(merch_name), &quantity_ptr);
+        bool lookup = ioopm_hash_table_lookup(cart->shopping_cart, ptr_elem(merch_name), &quantity_ptr);
 
         if (lookup) {
             counter = counter + quantity_ptr.i;
@@ -448,7 +441,7 @@ int db_lookup_merch_quantity_in_carts(webstore_t *db, char *merch_name) {
         int size = (int)ioopm_linked_list_size(names);
 
         for (int i = 0; i < size; i++) {
-            if (strcmp(merch_name, ioopm_linked_list_get(names, i).p) == 0) {
+            if(strcmp(merch_name, ioopm_linked_list_get(names, i).p) == 0) {
                 counter = counter + ioopm_linked_list_get(quantities, i).i;
             }
         }
@@ -485,8 +478,7 @@ void db_checkout(webstore_t *db, shopping_carts_t *cart) {
     for (int i = 0; i < cart_size; i++) {
         elem_t merch_name = ioopm_linked_list_get(names_list, i);
         elem_t quantity_ptr;
-        bool lookup =
-            ioopm_hash_table_lookup(cart->shopping_cart, merch_name, &quantity_ptr);
+        bool lookup = ioopm_hash_table_lookup(cart->shopping_cart, merch_name, &quantity_ptr);
 
         if (lookup) {
             merch_t *merch = db_get_merch_from_name(db, merch_name.p);

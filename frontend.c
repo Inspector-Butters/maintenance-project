@@ -269,8 +269,7 @@ void ui_remove_cart(webstore_t *db) {
         if (result) {
             printf("--- The cart has been successfully removed.---\n");
         } else {
-            printf("--- There is not a cart with given id. Try again from the "
-                   "beginning.---\n");
+            printf("--- There is not a cart with given id. Try again from the beginning.---\n");
         }
     }
 }
@@ -279,8 +278,7 @@ void ui_add_to_cart(webstore_t *db) {
     int carts_size = db_carts_size(db);
 
     if (carts_size == 0) {
-        printf("--- There are no active shopping carts in the Webstore. Try again "
-               "from the beginning. ---\n");
+        printf("--- There are no active shopping carts in the Webstore. Try again from the beginning. ---\n");
         ui_event_loop(db);
     }
 
@@ -292,16 +290,13 @@ void ui_add_to_cart(webstore_t *db) {
     shopping_carts_t *cart = db_get_cart_from_id(db, id_choice);
 
     if (cart == NULL) {
-        printf("--- There is not a cart with the given id. Try again from the "
-               "beginning. ---\n");
+        printf("--- There is not a cart with the given id. Try again from the beginning. ---\n");
     } else {
-        char *merch_name = ask_question_string(
-                               "State the name of the merch you wish to add to cart: ");
+        char *merch_name = ask_question_string("State the name of the merch you wish to add to cart: ");
         bool merch_exists = db_has_key(db, merch_name);
 
         if (!merch_exists) {
-            printf("--- There is not a merchandise with given name. Try again from "
-                   "the beginning.--- \n");
+            printf("--- There is not a merchandise with given name. Try again from the beginning.--- \n");
         } else {
             merch_t *merch = db_get_merch_from_name(db, merch_name);
 
@@ -312,12 +307,10 @@ void ui_add_to_cart(webstore_t *db) {
 
             printf("There %d units available.\n", valid_quantity);
 
-            int quantity_choice =
-                ask_question_int("State how many units to add to the cart: ");
+            int quantity_choice = ask_question_int("State how many units to add to the cart: ");
 
             if (quantity_choice > valid_quantity) {
-                printf("--- The input exceeds available units. Try again from the "
-                       "beginning.---\n");
+                printf("--- The input exceeds available units. Try again from the beginning.---\n");
             } else if (db_cart_has_key(cart, merch_name)) {
                 db_update_merch_quantity_in_cart(cart, merch_name, quantity_choice);
             } else {
@@ -333,8 +326,7 @@ void ui_remove_from_cart(webstore_t *db) {
     int carts_size = db_carts_size(db);
 
     if (carts_size == 0) {
-        printf("--- There are no active shopping carts in the Webstore. Try again "
-               "from the beginning. ---\n");
+        printf("--- There are no active shopping carts in the Webstore. Try again from the beginning. ---\n");
         ui_event_loop(db);
     }
 
@@ -346,24 +338,19 @@ void ui_remove_from_cart(webstore_t *db) {
     shopping_carts_t *cart = db_get_cart_from_id(db, id_choice);
 
     if (cart == NULL) {
-        printf("--- There is not a cart with the given id. Try again from the "
-               "beginning. ---\n");
+        printf("--- There is not a cart with the given id. Try again from the beginning. ---\n");
     } else {
-        char *merch_name = ask_question_string(
-                               "State the name of the merch you wish to remove from the cart: ");
+        char *merch_name = ask_question_string("State the name of the merch you wish to remove from the cart: ");
         bool merch_exists = db_has_key(db, merch_name);
 
         if (!merch_exists) {
-            printf("--- There is not a merchandise with given name. Try again from "
-                   "the beginning.--- \n");
+            printf("--- There is not a merchandise with given name. Try again from the beginning.--- \n");
         } else {
             if (!db_cart_has_key(cart, merch_name)) {
-                printf("--- The cart does not contain a merchandise with given name. "
-                       "Try again from the beginning. -- \n");
+                printf("--- The cart does not contain a merchandise with given name. Try again from the beginning. -- \n");
             } else {
                 db_remove_merch_from_cart(cart, merch_name);
-                printf("--- The merchandise have been successfully removed from the "
-                       "cart ---");
+                printf("--- The merchandise have been successfully removed from the cart ---");
             }
         }
     }
@@ -373,8 +360,7 @@ void ui_calculate_cost(webstore_t *db) {
     int carts_size = db_carts_size(db);
 
     if (carts_size == 0) {
-        printf("--- There are no active shopping carts in the Webstore. Try again "
-               "from the beginning. ---\n");
+        printf("--- There are no active shopping carts in the Webstore. Try again from the beginning. ---\n");
         ui_event_loop(db);
     }
 
@@ -386,13 +372,10 @@ void ui_calculate_cost(webstore_t *db) {
     shopping_carts_t *cart = db_get_cart_from_id(db, id_choice);
 
     if (cart == NULL) {
-        printf("--- There is not a cart with the given id. Try again from the "
-               "beginning. ---\n");
+        printf("--- There is not a cart with the given id. Try again from the beginning. ---\n");
     } else {
         int cost = db_calculate_cost(db, cart);
-        printf(
-            "--- The total cost of all merchandises in the shopping cart is: %d\n",
-            cost);
+        printf("--- The total cost of all merchandises in the shopping cart is: %d\n", cost);
     }
 }
 
@@ -400,8 +383,7 @@ void ui_checkout(webstore_t *db) {
     int carts_size = db_carts_size(db);
 
     if (carts_size == 0) {
-        printf("--- There are no active shopping carts in the Webstore. Try again "
-               "from the beginning. ---\n");
+        printf("--- There are no active shopping carts in the Webstore. Try again from the beginning. ---\n");
         ui_event_loop(db);
     }
 
@@ -413,8 +395,7 @@ void ui_checkout(webstore_t *db) {
     shopping_carts_t *cart = db_get_cart_from_id(db, id_choice);
 
     if (cart == NULL) {
-        printf("--- There is not a cart with the given id. Try again from the "
-               "beginning. ---\n");
+        printf("--- There is not a cart with the given id. Try again from the beginning. ---\n");
     } else {
         db_checkout(db, cart);
         db_remove_cart(db, id_choice);
