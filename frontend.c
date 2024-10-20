@@ -167,8 +167,8 @@ void ui_edit_merch(webstore_t *db) {
                    current_name, new_name);
         } else {
             merch_t *current_merch = db_get_merch(db, current_name);
-            merch_t *edited_merch = db_edit_merch(db, current_merch, new_name, 
-                                                    new_brand, new_category, new_color, new_desc, new_price);
+            merch_t *edited_merch = db_edit_merch(db, current_merch, new_name,
+                                                  new_brand, new_category, new_color, new_desc, new_price);
 
             db_remove_merch(db, current_name);
             db_add_merch(db, edited_merch);

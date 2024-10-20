@@ -81,25 +81,7 @@ char *db_get_category_from_webstore(webstore_t *db, int category_choice) {
     return result;
 }
 
-void db_list_merchs_bak(webstore_t *db) {
-    ioopm_list_t *merchs_list = ioopm_hash_table_values(db->merchs);
-    int size = (int)ioopm_linked_list_size(merchs_list);
 
-    for (int i = 0; i < size; i++) {
-        merch_t *merch = ioopm_linked_list_get(merchs_list, i).p;
-        db_list_a_merch(merch);
-    }
-
-    ioopm_linked_list_destroy(merchs_list);
-}
-
-void db_list_a_merch_bak(merch_t *merch) {
-    printf("\nMerchandise name: %s\n"
-           "Merchandise description: %s\n"
-           "Merchandise price: %d\n"
-           "Merchandise category: %s\n\n",
-           merch->name, merch->desc, merch->price, merch->category);
-}
 
 webstore_t *db_create_webstore(void) {
     webstore_t *db = calloc(1, sizeof(webstore_t));
