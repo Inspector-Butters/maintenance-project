@@ -15,7 +15,7 @@ typedef struct shopping_carts shopping_carts_t;
  * @author Erdem Garip
  * @date 15 Nov 2022
  * @brief Backend of the Warehouse application
- *  
+ *
  */
 
 int string_hash(elem_t e);
@@ -227,7 +227,7 @@ void db_destroy_a_cart(shopping_carts_t *cart);
 
 /// @brief Calculates the valid quantity an user can enter
 /// @param db The webstore
-/// @param merch The merchandise 
+/// @param merch The merchandise
 /// @param merch_name The merchandise's name
 /// @return The viable quantity that can be chosen
 int db_lookup_valid_quantity(webstore_t *db, merch_t *merch, char *merch_name);

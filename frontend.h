@@ -6,7 +6,7 @@
  * @author Erdem Garip
  * @date 15 Nov 2022
  * @brief Frontend of the Warehouse application
- *  
+ *
  */
 
 /// @brief Adds a new merchandise to the Webstore
