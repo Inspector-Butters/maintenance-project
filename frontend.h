@@ -3,11 +3,16 @@
 
 /**
  * @file frontend.h
- * @author Erdem Garip
- * @date 15 Nov 2022
+ * @author Anton Gustavsson, Erdem Garip, Mohammad Bastin
+ * @date 21 october 2024
  * @brief Frontend of the Warehouse application
  *
  */
+
+/// @brief Lists the existing categories in the Webstore
+/// @param db The Webstore
+/// @param category The location of the category that will be found or created
+void ui_list_catagories(webstore_t *db, char **category);
 
 /// @brief Adds a new merchandise to the Webstore
 /// @param db The webstore
@@ -54,7 +59,6 @@ void ui_add_to_cart(webstore_t *db);
 /// @brief Removes a merchandise from a shopping cart
 /// @param db The webstore
 void ui_remove_from_cart(webstore_t *db);
-
 
 //
 //

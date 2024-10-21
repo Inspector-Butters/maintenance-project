@@ -10,29 +10,27 @@ typedef struct shopping_carts shopping_carts_t;
 
 /**
  * @file backend.h
- * @author Erdem Garip
- * @date 15 Nov 2022
+ * @author Anton Gustavsson, Erdem Garip, Mohammad Bastin
+ * @date 21 october 2024
  * @brief Backend of the Warehouse application
  *
  */
 
 int string_hash(elem_t e);
 
-/// @brief
-/// @return
+/// @brief Lists all the categories that exists in the Webstore
+/// @param db The Webstore
 void db_list_all_categories_in_webstore(webstore_t *db);
 
-/// @brief
-/// @return
+/// @brief Searches for the number of categories in the Webstore
+/// @param db The Webstore
+/// @return The number of categories
 int db_number_of_categories_in_webstore(webstore_t *db);
 
-/// @breif
-/// @return
+/// @brief Creates a new shopping cart and allocates memory for it
+/// @param db The Webstore
+/// @return A new shopping cart
 char *db_get_category_from_webstore(webstore_t *db, int category_choice);
-
-
-
-
 
 /// @brief Creates a Webstore
 /// @return A webstore consisting of two hastables db->merches and db->carts
