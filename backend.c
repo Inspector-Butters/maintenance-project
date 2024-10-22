@@ -651,6 +651,21 @@ int db_get_price(merch_t *merch)
   return merch->price;
 }
 
+char *db_get_category(merch_t *merch)
+{
+  return merch->category;
+}
+
+char *db_get_color(merch_t *merch)
+{
+  return merch->color;
+}
+
+char *db_get_brand(merch_t *merch)
+{
+  return merch->brand;
+}
+
 int db_get_merch_location_quantity(merch_t *merch, char *shelf_name)
 {
   int size = (int)ioopm_linked_list_size(merch->locations);

@@ -261,5 +261,9 @@ int db_lookup_valid_quantity(webstore_t *db, merch_t *merch, char *merch_name);
 char *db_get_name(merch_t *merch);
 char *db_get_desc(merch_t *merch);
 int db_get_price(merch_t *merch);
+char *db_get_brand(merch_t *merch);
+char *db_get_category(merch_t *merch);
+char *db_get_color(merch_t *merch);
+
 int db_get_merch_location_quantity(merch_t *merch, char *shelf_name);
 int db_get_merch_quantity_in_a_cart(shopping_carts_t *cart, char *merch_name);

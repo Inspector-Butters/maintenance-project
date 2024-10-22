@@ -1,10 +1,11 @@
 #include <CUnit/Basic.h>
-#include "linked_list.h"
-#include "hash_table.h"
-#include "iterator.h"
+
+#include "backend.h"
 #include "common.h"
 #include "frontend.h"
-#include "backend.h"
+#include "hash_table.h"
+#include "iterator.h"
+#include "linked_list.h"
 
 char *ioopm_strdup(char *str);
 char *ioopm_strdup(char *str)
@@ -15,7 +16,7 @@ char *ioopm_strdup(char *str)
   return result;
 }
 
-void test0_common_functions(void)
+void test1_common_functions(void)
 {
   char *valid_arr[5] = {"a", "A", "adidas", "Adidas", "helle kelle"};
   char *invalid_1 = "\n";
@@ -59,47 +60,64 @@ void test0_common_functions(void)
   CU_ASSERT_FALSE(is_positive(0.5));
 }
 
-void test1_create_and_destroy(void)
+void test2_create_and_destroy(void)
 {
   webstore_t *db = db_create_webstore();
   CU_ASSERT_PTR_NOT_NULL(db);
   db_destroy_webstore(db);
 }
 
-void test2_create_merch(void)
+merch_t *create_merch()
 {
-  // Jag vet inte varför men det uppstår problem utan strdup. TODO: fråga om det här
-  char *nameA = ioopm_strdup("adidas");
-  char *descA = ioopm_strdup("bra skor");
-  merch_t *adidas = db_create_merch(nameA, descA, 100);
-
-  CU_ASSERT_PTR_NOT_NULL(adidas);
-  CU_ASSERT_STRING_EQUAL(db_get_name(adidas), nameA);
-  CU_ASSERT_STRING_EQUAL(db_get_desc(adidas), descA);
-  CU_ASSERT_EQUAL(db_get_price(adidas), 100);
-
-  char *nameB = ioopm_strdup("nixe llc");
-  char *descB = ioopm_strdup("byxor");
-  char *nameC = ioopm_strdup("nixellc");
-  merch_t *nixe = db_create_merch(nameB, descB, 50);
-
-  CU_ASSERT_STRING_NOT_EQUAL(db_get_name(nixe), nameC);
-  CU_ASSERT_STRING_EQUAL(db_get_name(nixe), nameB);
-  CU_ASSERT_STRING_EQUAL(db_get_desc(nixe), descB);
-  CU_ASSERT_EQUAL(db_get_price(nixe), 50);
-
-  free(nameC);
-  db_destroy_a_merch(adidas);
-  db_destroy_a_merch(nixe);
+  return db_create_merch(ioopm_strdup("adidas"), ioopm_strdup("bra skor"), 100, ioopm_strdup("adidas"), ioopm_strdup("shoes"), ioopm_strdup("black"));
 }
 
-void test3_remove_merch(void)
+void test3_create_and_edit_merch(void)
+{
+  webstore_t *db = db_create_webstore();
+
+  // Jag vet inte varför men det uppstår problem utan strdup. TODO: fråga om det här
+  char *name = ioopm_strdup("power4x runner");
+  char *desc = ioopm_strdup("good shoes");
+  int price = 100;
+  char *brand = ioopm_strdup("adidas");
+  char *category = ioopm_strdup("shoes");
+  char *color = ioopm_strdup("color");
+  merch_t *adidas = db_create_merch(name, desc, price, category, brand, color);
+
+  CU_ASSERT_PTR_NOT_NULL(adidas);
+  CU_ASSERT_STRING_EQUAL(db_get_name(adidas), name);
+  CU_ASSERT_STRING_EQUAL(db_get_desc(adidas), desc);
+  CU_ASSERT_EQUAL(db_get_price(adidas), price);
+  CU_ASSERT_STRING_EQUAL(db_get_brand(adidas), brand);
+  CU_ASSERT_STRING_EQUAL(db_get_category(adidas), category);
+  CU_ASSERT_STRING_EQUAL(db_get_color(adidas), color);
+
+  char *new_nameA = ioopm_strdup("nixe");
+  char *new_descA = ioopm_strdup("byxor");
+  char *new_brand = ioopm_strdup("nixe");
+  char *new_category = ioopm_strdup("shoes");
+  char *new_color = ioopm_strdup("black");
+  int new_priceA = 55;
+  merch_t *nixe = db_edit_merch(db, adidas, new_nameA, new_brand, new_category, new_color, new_descA, new_priceA);
+
+  CU_ASSERT_STRING_EQUAL(db_get_name(nixe), new_nameA);
+  CU_ASSERT_STRING_EQUAL(db_get_desc(nixe), new_descA);
+  CU_ASSERT_EQUAL(db_get_price(nixe), new_priceA);
+  CU_ASSERT_STRING_EQUAL(db_get_brand(nixe), new_brand);
+  CU_ASSERT_STRING_EQUAL(db_get_category(nixe), new_category);
+  CU_ASSERT_STRING_EQUAL(db_get_color(nixe), new_color);
+
+  db_destroy_a_merch(adidas);
+  db_destroy_webstore(db);
+}
+
+void test4_remove_merch(void)
 {
   webstore_t *db = db_create_webstore();
 
   char *nameA = ioopm_strdup("adidas");
-  char *descA = ioopm_strdup("bra skor");
-  merch_t *adidas = db_create_merch(nameA, descA, 100);
+  merch_t *adidas = create_merch();
 
   db_add_merch(db, adidas);
   CU_ASSERT_TRUE(db_has_key(db, db_get_name(adidas)));
@@ -115,55 +133,23 @@ void test3_remove_merch(void)
   db_destroy_webstore(db);
 }
 
-void test4_edit_merch(void)
-{
-  webstore_t *db = db_create_webstore();
-
-  // anledningen till nameA och nameAcopy är att db_create_merch och db_remove_merch tar ägarskap av
-  // variablen och tar friar den. Därför uppstår invalid read i (x) nedan om man använder nameA
-  char *nameA = ioopm_strdup("adidas");
-  char *nameAcopy = ioopm_strdup(nameA);
-  char *descA = ioopm_strdup("bra skor");
-  int priceA = 100;
-
-  merch_t *adidas = db_create_merch(nameA, descA, priceA);
-
-  db_add_merch(db, adidas);
-  CU_ASSERT_TRUE(db_has_key(db, nameA));
-  CU_ASSERT_EQUAL(1, db_merch_count(db));
-
-  char *new_nameA = ioopm_strdup("nixe");
-  char *new_descA = ioopm_strdup("byxor");
-  int new_priceA = 55;
-  merch_t *nixe = db_edit_merch(db, adidas, new_nameA, new_descA, new_priceA);
-
-  db_remove_merch(db, nameA);
-  CU_ASSERT_EQUAL(0, db_merch_count(db));
-  db_add_merch(db, nixe);
-  CU_ASSERT_EQUAL(1, db_merch_count(db));
-  CU_ASSERT_FALSE(db_has_key(db, nameAcopy)); // (x)
-  CU_ASSERT_TRUE(db_has_key(db, new_nameA));
-
-  // TODO: lägg till test för shelf också
-
-  free(nameAcopy);
-  db_destroy_webstore(db);
-}
-
 void test5_replenish_new(void)
 {
   webstore_t *db = db_create_webstore();
 
-  char *nameA = ioopm_strdup("adidas");
-  char *descA = ioopm_strdup("bra skor");
-  int priceA = 100;
+  char *name = ioopm_strdup("power4x runner");
+  char *desc = ioopm_strdup("good shoes");
+  int price = 100;
+  char *brand = ioopm_strdup("adidas");
+  char *category = ioopm_strdup("shoes");
+  char *color = ioopm_strdup("color");
+  merch_t *adidas = db_create_merch(name, desc, price, category, brand, color);
   char *locationA = ioopm_strdup("A99");
   int location_quantityA = 1;
 
-  merch_t *adidas = db_create_merch(nameA, descA, priceA);
   db_add_merch(db, adidas);
 
-  CU_ASSERT_TRUE(db_has_key(db, nameA));
+  CU_ASSERT_TRUE(db_has_key(db, name));
   CU_ASSERT_FALSE(db_location_name_exists_in_webstore(db, locationA));
 
   db_add_location_to_merch(adidas, locationA, location_quantityA);
@@ -176,15 +162,19 @@ void test6_replenish_edit(void)
 {
   webstore_t *db = db_create_webstore();
 
-  char *nameA = ioopm_strdup("adidas");
-  char *descA = ioopm_strdup("bra skor");
+  char *nameA = ioopm_strdup("power4x runner");
+  char *descA = ioopm_strdup("good shoes");
   int priceA = 100;
+  char *brandA = ioopm_strdup("adidas");
+  char *categoryA = ioopm_strdup("shoes");
+  char *colorA = ioopm_strdup("color");
+
   char *locationA = ioopm_strdup("A99");
   int location_quantityA = 1;
   char *location_does_not_exist = ioopm_strdup("B255");
   int dummy = 22;
 
-  merch_t *adidas = db_create_merch(nameA, descA, priceA);
+  merch_t *adidas = db_create_merch(nameA, descA, priceA, categoryA, brandA, colorA);
   db_add_merch(db, adidas);
 
   CU_ASSERT_TRUE(db_has_key(db, nameA));
@@ -200,11 +190,14 @@ void test6_replenish_edit(void)
   char *nameB = ioopm_strdup("nixe");
   char *descB = ioopm_strdup("bra byx");
   int priceB = 9998;
+  char *brandB = ioopm_strdup("adidas");
+  char *categoryB = ioopm_strdup("shoes");
+  char *colorB = ioopm_strdup("color");
+  merch_t *nixe = db_create_merch(nameB, descB, priceB, categoryB, brandB, colorB);
   char *locationB = ioopm_strdup("A11");
   int quantityB = 11;
   int quantityBnew = 25;
 
-  merch_t *nixe = db_create_merch(nameB, descB, priceB);
   db_add_merch(db, nixe);
 
   CU_ASSERT_FALSE(db_edit_location_quantity(nixe, locationB, quantityB));
@@ -247,13 +240,17 @@ void test8_add_and_remove_cart(void)
   db_add_cart(db, cartA);
 
   char *nameA = ioopm_strdup("adidas");
-  char *descA = ioopm_strdup("bra skor");
-  int priceA = 100;
+  char *descB = ioopm_strdup("bra skor");
+  int priceB = 100;
+  char *brandB = ioopm_strdup("adidas");
+  char *categoryB = ioopm_strdup("shoes");
+  char *colorB = ioopm_strdup("color");
+
   char *locationA1 = ioopm_strdup("A01");
   int location_quantityA1 = 200;
   char *locationA2 = ioopm_strdup("A31");
   int location_quantityA2 = 100;
-  merch_t *adidas = db_create_merch(nameA, descA, priceA);
+  merch_t *adidas = db_create_merch(nameA, descB, priceB, categoryB, brandB, colorB);
   db_add_merch(db, adidas);
   db_add_location_to_merch(adidas, locationA1, location_quantityA1);
   db_add_location_to_merch(adidas, locationA2, location_quantityA2);
@@ -291,11 +288,15 @@ void test9_calculate_cost(void)
   char *nameA = ioopm_strdup("adidas");
   char *descA = ioopm_strdup("bra skor");
   int priceA = 100;
+  char *brandA = ioopm_strdup("adidas");
+  char *categoryA = ioopm_strdup("shoes");
+  char *colorA = ioopm_strdup("color");
+  merch_t *adidas = db_create_merch(nameA, descA, priceA, categoryA, brandA, colorA);
+
   char *locationA1 = ioopm_strdup("A01");
   int location_quantityA1 = 200;
   char *locationA2 = ioopm_strdup("A31");
   int location_quantityA2 = 100;
-  merch_t *adidas = db_create_merch(nameA, descA, priceA);
   db_add_merch(db, adidas);
   db_add_location_to_merch(adidas, locationA1, location_quantityA1);
   db_add_location_to_merch(adidas, locationA2, location_quantityA2);
@@ -319,13 +320,18 @@ void test10_checkout(void)
   char *nameA = ioopm_strdup("adidas");
   char *descA = ioopm_strdup("bra skor");
   int priceA = 100;
+  char *brandA = ioopm_strdup("adidas");
+  char *categoryA = ioopm_strdup("shoes");
+  char *colorA = ioopm_strdup("color");
+
   char *locationA1 = ioopm_strdup("A01");
   int location_quantityA1 = 200;
   char *locationA2 = ioopm_strdup("A31");
   int location_quantityA2 = 50;
   char *locationA3 = ioopm_strdup("C88");
   int location_quantityA3 = 80;
-  merch_t *adidas = db_create_merch(nameA, descA, priceA);
+  merch_t *adidas = db_create_merch(nameA, descA, priceA, categoryA, brandA, colorA);
+
   db_add_merch(db, adidas);
   db_add_location_to_merch(adidas, locationA1, location_quantityA1);
   db_add_location_to_merch(adidas, locationA2, location_quantityA2);
@@ -360,11 +366,16 @@ void test11_checkout_without_update(void)
   char *nameA = ioopm_strdup("adidas");
   char *descA = ioopm_strdup("bra skor");
   int priceA = 100;
+  char *brandA = ioopm_strdup("adidas");
+  char *categoryA = ioopm_strdup("shoes");
+  char *colorA = ioopm_strdup("color");
+
   char *locationA1 = ioopm_strdup("A01");
   int location_quantityA1 = 200;
   char *locationA2 = ioopm_strdup("A31");
   int location_quantityA2 = 100;
-  merch_t *adidas = db_create_merch(nameA, descA, priceA);
+  merch_t *adidas = db_create_merch(nameA, descA, priceA, categoryA, brandA, colorA);
+
   db_add_merch(db, adidas);
   db_add_location_to_merch(adidas, locationA1, location_quantityA1);
   db_add_location_to_merch(adidas, locationA2, location_quantityA2);
@@ -394,11 +405,15 @@ void test12_checkout_with_update(void)
   char *nameA = ioopm_strdup("adidas");
   char *descA = ioopm_strdup("bra skor");
   int priceA = 100;
+  char *brandA = ioopm_strdup("adidas");
+  char *categoryA = ioopm_strdup("shoes");
+  char *colorA = ioopm_strdup("color");
+  merch_t *adidas = db_create_merch(nameA, descA, priceA, categoryA, brandA, colorA);
+
   char *locationA1 = ioopm_strdup("A01");
   int location_quantityA1 = 200;
   char *locationA2 = ioopm_strdup("A31");
   int location_quantityA2 = 100;
-  merch_t *adidas = db_create_merch(nameA, descA, priceA);
   db_add_merch(db, adidas);
   db_add_location_to_merch(adidas, locationA1, location_quantityA1);
   db_add_location_to_merch(adidas, locationA2, location_quantityA2);
@@ -406,7 +421,11 @@ void test12_checkout_with_update(void)
   char *nameB = ioopm_strdup("nixe");
   char *descB = ioopm_strdup("bra byx");
   int priceB = 50;
-  merch_t *nixe = db_create_merch(nameB, descB, priceB);
+  char *brandB = ioopm_strdup("adidas");
+  char *categoryB = ioopm_strdup("shoes");
+  char *colorB = ioopm_strdup("color");
+  merch_t *nixe = db_create_merch(nameB, descB, priceB, categoryB, brandB, colorB);
+
   char *locationB1 = ioopm_strdup("A05");
   int location_quantityB1 = 200;
   char *locationB2 = ioopm_strdup("A62");
@@ -464,12 +483,16 @@ void test13_costs_and_valid_quantities(void)
 
   char *nameA = ioopm_strdup("adidas");
   char *descA = ioopm_strdup("bra skor");
-  int priceA = 3;
+  int priceA = 100;
+  char *brandA = ioopm_strdup("adidas");
+  char *categoryA = ioopm_strdup("shoes");
+  char *colorA = ioopm_strdup("color");
+  merch_t *adidas = db_create_merch(nameA, descA, priceA, categoryA, brandA, colorA);
+
   char *locationA1 = ioopm_strdup("A01");
   int location_quantityA1 = 200;
   char *locationA2 = ioopm_strdup("A31");
   int location_quantityA2 = 100;
-  merch_t *adidas = db_create_merch(nameA, descA, priceA);
   db_add_merch(db, adidas);
   db_add_location_to_merch(adidas, locationA1, location_quantityA1);
   db_add_location_to_merch(adidas, locationA2, location_quantityA2);
@@ -500,9 +523,13 @@ void test14_something(void)
   char *nameA = ioopm_strdup("adidas");
   char *descA = ioopm_strdup("bra skor");
   int priceA = 3;
+  char *brandA = ioopm_strdup("adidas");
+  char *categoryA = ioopm_strdup("shoes");
+  char *colorA = ioopm_strdup("color");
+  merch_t *adidas = db_create_merch(nameA, descA, priceA, categoryA, brandA, colorA);
+
   char *locationA1 = ioopm_strdup("A01");
   int location_quantityA1 = 200;
-  merch_t *adidas = db_create_merch(nameA, descA, priceA);
   db_add_merch(db, adidas);
   db_add_location_to_merch(adidas, locationA1, location_quantityA1);
 
@@ -514,7 +541,7 @@ void test14_something(void)
   CU_ASSERT_EQUAL(300, db_calculate_cost(db, cartA));
   db_remove_merch_from_cart(cartA, nameA);
   CU_ASSERT_EQUAL(0, db_calculate_cost(db, cartA));
-  
+
   // CU_ASSERT_EQUAL(200, db_lookup_merch_quantity_in_locations(adidas));
   // CU_ASSERT_EQUAL(100, db_lookup_merch_quantity_in_carts(db, nameA));
   // CU_ASSERT_EQUAL(100, db_lookup_valid_quantity(db, adidas, nameA));
@@ -549,11 +576,10 @@ int main()
   }
 
   if (
-      (NULL == CU_add_test(test_suite1, "test 0 common functions", test0_common_functions)) ||
-      (NULL == CU_add_test(test_suite1, "test 1 create and destroy", test1_create_and_destroy)) ||
-      (NULL == CU_add_test(test_suite1, "test 2 create merch", test2_create_merch)) ||
-      (NULL == CU_add_test(test_suite1, "test 3 remove merch", test3_remove_merch)) ||
-      (NULL == CU_add_test(test_suite1, "test 4 edit merch", test4_edit_merch)) ||
+      (NULL == CU_add_test(test_suite1, "test 0 common functions", test1_common_functions)) ||
+      (NULL == CU_add_test(test_suite1, "test 1 create and destroy", test2_create_and_destroy)) ||
+      (NULL == CU_add_test(test_suite1, "test 2 create merch", test3_create_and_edit_merch)) ||
+      (NULL == CU_add_test(test_suite1, "test 3 remove merch", test4_remove_merch)) ||
       (NULL == CU_add_test(test_suite1, "test 5 replenish new", test5_replenish_new)) ||
       (NULL == CU_add_test(test_suite1, "test 6 replenish edit", test6_replenish_edit)) ||
       (NULL == CU_add_test(test_suite1, "test 7 create carts", test7_create_carts)) ||
