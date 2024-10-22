@@ -1,12 +1,8 @@
-## Running
-Run `make all` and then `make run`
-
-### Compiling
-Run `make` or `make all`
+## Running Webstore
+Run `make db` 
 
 ### Testing
-To run the tests, run `make test`
-
+To run the tests, run `make tests`
 
 ### Cleaning
 Run `make clean`
