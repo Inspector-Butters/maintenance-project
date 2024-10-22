@@ -20,9 +20,7 @@ struct webstore
 {
   ioopm_hash_table_t *merchs;
   ioopm_hash_table_t *carts;
-
   ioopm_hash_table_t *categories;
-
   int cart_id;
   int cart_quantity;
 };
@@ -50,7 +48,6 @@ int string_hash(elem_t e)
 }
 
 // ### Internal ###
-
 void db_list_all_categories_in_webstore(webstore_t *db)
 {
   ioopm_list_t *categories_list = ioopm_hash_table_keys(db->categories);
@@ -88,29 +85,6 @@ char *db_get_category_from_webstore(webstore_t *db, int category_choice)
   return result;
 }
 
-void db_list_merchs_bak(webstore_t *db)
-{
-  ioopm_list_t *merchs_list = ioopm_hash_table_values(db->merchs);
-  int size = (int)ioopm_linked_list_size(merchs_list);
-
-  for (int i = 0; i < size; i++)
-  {
-    merch_t *merch = ioopm_linked_list_get(merchs_list, i).p;
-    db_list_a_merch(merch);
-  }
-
-  ioopm_linked_list_destroy(merchs_list);
-}
-
-void db_list_a_merch_bak(merch_t *merch)
-{
-  printf("\nMerchandise name: %s\n"
-         "Merchandise description: %s\n"
-         "Merchandise price: %d\n"
-         "Merchandise category: %s\n\n",
-         merch->name, merch->desc, merch->price, merch->category);
-}
-
 webstore_t *db_create_webstore(void)
 {
   webstore_t *db = calloc(1, sizeof(webstore_t));
@@ -119,7 +93,6 @@ webstore_t *db_create_webstore(void)
       ioopm_hash_table_create(key_equiv, ioopm_compare_ptr_elems, string_hash);
   db->carts = ioopm_hash_table_create(ioopm_compare_int_elems, NULL, NULL);
   db->cart_id = 1;
-
   db->categories =
       ioopm_hash_table_create(key_equiv, ioopm_compare_ptr_elems, string_hash);
 
@@ -134,10 +107,8 @@ merch_t *db_create_merch(char *name, char *desc, int price, char *category, char
   new_merch->desc = desc;
   new_merch->price = price;
   new_merch->category = category;
-
   new_merch->brand = brand;
   new_merch->color = color;
-
   new_merch->locations = ioopm_linked_list_create(ioopm_compare_ptr_elems);
 
   return new_merch;

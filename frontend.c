@@ -45,7 +45,6 @@ static int menu_choice(void)
 }
 
 // ### Internal ###
-
 void ui_list_catagories(webstore_t *db, char **category)
 {
 
@@ -80,7 +79,6 @@ void ui_list_catagories(webstore_t *db, char **category)
 
     else
     {
-
       int category_choice;
 
       do
