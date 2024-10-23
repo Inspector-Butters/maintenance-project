@@ -551,6 +551,49 @@ void test14_something(void)
   db_destroy_webstore(db);
 }
 
+void test15_categories_color_brand(void)
+{
+  webstore_t *db = db_create_webstore();
+  CU_ASSERT_EQUAL(0, db_number_of_categories_in_webstore(db));
+
+  char *nameA = ioopm_strdup("adidas");
+  char *descA = ioopm_strdup("bra skor");
+  int priceA = 100;
+  char *brandA = ioopm_strdup("adidas");
+  char *categoryA = ioopm_strdup("shoes");
+  char *colorA = ioopm_strdup("color");
+  merch_t *adidas = db_create_merch(nameA, descA, priceA, categoryA, brandA, colorA);
+  db_add_merch(db, adidas);
+
+  CU_ASSERT_EQUAL(1, db_number_of_categories_in_webstore(db));
+
+  char *nameB = ioopm_strdup("nixe");
+  char *descB = ioopm_strdup("bra byx");
+  int priceB = 9998;
+  char *brandB = ioopm_strdup("adidas");
+  char *categoryB = ioopm_strdup("shoes");
+  char *colorB = ioopm_strdup("color");
+  merch_t *nixe = db_create_merch(nameB, descB, priceB, categoryB, brandB, colorB);
+  db_add_merch(db, nixe);
+  CU_ASSERT_EQUAL(1, db_number_of_categories_in_webstore(db));
+
+  char *nameC = ioopm_strdup("seamaster");
+  char *descC = ioopm_strdup("sea watch");
+  int priceC = 9998;
+  char *brandC = ioopm_strdup("casio");
+  char *categoryC = ioopm_strdup("watch");
+  char *colorC = ioopm_strdup("blue");
+  merch_t *benx = db_create_merch(nameC, descC, priceC, categoryC, brandC, colorC);
+  db_add_merch(db, benx);
+  CU_ASSERT_EQUAL(2, db_number_of_categories_in_webstore(db));
+
+  CU_ASSERT_STRING_EQUAL(db_get_color(benx), colorC);
+  CU_ASSERT_STRING_EQUAL(db_get_brand(benx), brandC);
+  CU_ASSERT_STRING_EQUAL(db_get_category(benx), categoryC);
+
+  db_destroy_webstore(db);
+}
+
 int init_suite(void)
 {
   return 0;
@@ -589,7 +632,8 @@ int main()
       (NULL == CU_add_test(test_suite1, "test 11 checkout without update", test11_checkout_without_update)) ||
       (NULL == CU_add_test(test_suite1, "test 12 checkout with update", test12_checkout_with_update)) ||
       (NULL == CU_add_test(test_suite1, "test 13 costs and valid quantities", test13_costs_and_valid_quantities)) ||
-      (NULL == CU_add_test(test_suite1, "test 14 something", test14_something))
+      (NULL == CU_add_test(test_suite1, "test 14 something", test14_something)) ||
+      (NULL == CU_add_test(test_suite1, "test 14 categories", test15_categories_color_brand))
 
   )
   {
