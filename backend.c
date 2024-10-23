@@ -20,9 +20,7 @@ struct webstore
 {
   ioopm_hash_table_t *merchs;
   ioopm_hash_table_t *carts;
-
   ioopm_hash_table_t *categories;
-
   int cart_id;
   int cart_quantity;
 };
